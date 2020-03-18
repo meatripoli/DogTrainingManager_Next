@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -105,96 +105,191 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Header; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/AppBar */ "@material-ui/core/AppBar");
-/* harmony import */ var _material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/Toolbar */ "@material-ui/core/Toolbar");
-/* harmony import */ var _material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Typography */ "@material-ui/core/Typography");
-/* harmony import */ var _material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _material_ui_core_Link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/Link */ "@material-ui/core/Link");
-/* harmony import */ var _material_ui_core_Link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_Link__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "@material-ui/core/styles");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 var _jsxFileName = "/Users/meatripoli/ClassWork/FinalProject/components/Header.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-// import Link from 'next/link';
-// const linkStyle = {
-//     marginRight: 15
-// };
-// export default function Header() {
-//     return (
-//         <div>
-//             <Link href="/">
-//                 <a style={linkStyle}>Home</a>
-//             </Link>
-//             <Link href="/about">
-//                 <a style={linkStyle}>About</a>
-//             </Link>
-//         </div>
-//     );
-// };
 
-
-
-
-
-const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["makeStyles"])({
-  root: {
-    background: 'linear-gradient(45deg, #019474 30%, #b5b5b5 90%)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(0, 0, 0, .3)',
-    height: 50,
-    padding: '0 30px'
-  },
-  link: {
-    color: 'white',
-    paddingLeft: '10px'
-  }
-});
+const linkStyle = {
+  marginRight: 15
+};
 function Header() {
-  const classes = useStyles();
-  return __jsx(_material_ui_core_AppBar__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    position: "fixed",
+  return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 43
+      lineNumber: 9
     },
     __self: this
-  }, __jsx(_material_ui_core_Toolbar__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    className: classes.root,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 44
-    },
-    __self: this
-  }, __jsx(_material_ui_core_Typography__WEBPACK_IMPORTED_MODULE_3___default.a, {
-    variant: "h6",
-    noWrap: true,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 45
-    },
-    __self: this
-  }, __jsx(_material_ui_core_Link__WEBPACK_IMPORTED_MODULE_4___default.a, {
-    className: classes.link,
+  }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 10
     },
     __self: this
-  }, "Home"), __jsx(_material_ui_core_Link__WEBPACK_IMPORTED_MODULE_4___default.a, {
-    className: classes.link,
+  }, __jsx("a", {
+    style: linkStyle,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    },
+    __self: this
+  }, "Home")), __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/about",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 13
     },
     __self: this
-  }, "Form"))));
+  }, __jsx("a", {
+    style: linkStyle,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14
+    },
+    __self: this
+  }, "About")));
 }
+;
+
+/***/ }),
+
+/***/ "./components/HeaderSemantics.js":
+/*!***************************************!*\
+  !*** ./components/HeaderSemantics.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "/Users/meatripoli/ClassWork/FinalProject/components/HeaderSemantics.js";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+const HeaderSemantics = () => __jsx("div", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 5
+  },
+  __self: undefined
+}, __jsx("button", {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 6
+  },
+  __self: undefined
+}, "other button"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
+  as: "h2",
+  dividing: true,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 7
+  },
+  __self: undefined
+}, "Menu"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+  primary: true,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 10
+  },
+  __self: undefined
+}, "Primary"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], {
+  columns: 3,
+  doubling: true,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 11
+  },
+  __self: undefined
+}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 12
+  },
+  __self: undefined
+}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"], {
+  items: [{
+    key: '1',
+    name: 'link-1',
+    content: 'Link'
+  }, {
+    key: '2',
+    name: 'link-2',
+    content: 'Link'
+  }, {
+    key: '3',
+    name: 'link-3',
+    content: 'Link'
+  }],
+  pointing: true,
+  secondary: true,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 13
+  },
+  __self: undefined
+}))));
+
+/* harmony default export */ __webpack_exports__["default"] = (HeaderSemantics);
+
+/***/ }),
+
+/***/ "./components/Layout.js":
+/*!******************************!*\
+  !*** ./components/Layout.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-jsx/style */ "styled-jsx/style");
+/* harmony import */ var styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "/Users/meatripoli/ClassWork/FinalProject/components/Layout.js";
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+/* harmony default export */ __webpack_exports__["default"] = (props => __jsx("div", {
+  className: "jsx-2286731320" + " " + "App",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 2
+  },
+  __self: undefined
+}, __jsx("header", {
+  className: "jsx-2286731320",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 3
+  },
+  __self: undefined
+}, __jsx("h1", {
+  className: "jsx-2286731320",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 4
+  },
+  __self: undefined
+}, "Layout Menu"), __jsx("nav", {
+  className: "jsx-2286731320",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 5
+  },
+  __self: undefined
+})), props.children, __jsx(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
+  id: "2286731320",
+  __self: undefined
+}, "h1.jsx-2286731320{border-bottom:1px solid gray;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9tZWF0cmlwb2xpL0NsYXNzV29yay9GaW5hbFByb2plY3QvY29tcG9uZW50cy9MYXlvdXQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBT2dCLEFBRzBDLDZCQUNqQyIsImZpbGUiOiIvVXNlcnMvbWVhdHJpcG9saS9DbGFzc1dvcmsvRmluYWxQcm9qZWN0L2NvbXBvbmVudHMvTGF5b3V0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgKHByb3BzKSA9PiBcbjxkaXYgY2xhc3NOYW1lPVwiQXBwXCI+XG4gICAgPGhlYWRlcj5cbiAgICAgICAgPGgxPkxheW91dCBNZW51PC9oMT5cbiAgICAgICAgPG5hdj48L25hdj5cbiAgICA8L2hlYWRlcj5cbiAgICB7cHJvcHMuY2hpbGRyZW59XG4gICAgPHN0eWxlIGpzeD57YFxuICAgICAgICBoMSB7XG4gICAgICAgICAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgZ3JheTtcbiAgICAgICAgfVxuICAgIGB9XG4gICAgPC9zdHlsZT5cbjwvZGl2PiJdfQ== */\n/*@ sourceURL=/Users/meatripoli/ClassWork/FinalProject/components/Layout.js */")));
 
 /***/ }),
 
@@ -1885,31 +1980,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Index; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_HeaderSemantics__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/HeaderSemantics */ "./components/HeaderSemantics.js");
 /* harmony import */ var _components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Header */ "./components/Header.js");
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
 var _jsxFileName = "/Users/meatripoli/ClassWork/FinalProject/pages/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
+
 function Index() {
-  return __jsx("div", {
+  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 5
+      lineNumber: 7
     },
     __self: this
-  }, __jsx(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, __jsx(_components_HeaderSemantics__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6
+      lineNumber: 8
+    },
+    __self: this
+  }), __jsx(_components_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
     },
     __self: this
   }), __jsx("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 10
     },
     __self: this
   }, "Hello Next.js"));
@@ -1917,7 +2019,7 @@ function Index() {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -1926,61 +2028,6 @@ function Index() {
 
 module.exports = __webpack_require__(/*! /Users/meatripoli/ClassWork/FinalProject/pages/index.js */"./pages/index.js");
 
-
-/***/ }),
-
-/***/ "@material-ui/core/AppBar":
-/*!*******************************************!*\
-  !*** external "@material-ui/core/AppBar" ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/AppBar");
-
-/***/ }),
-
-/***/ "@material-ui/core/Link":
-/*!*****************************************!*\
-  !*** external "@material-ui/core/Link" ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Link");
-
-/***/ }),
-
-/***/ "@material-ui/core/Toolbar":
-/*!********************************************!*\
-  !*** external "@material-ui/core/Toolbar" ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Toolbar");
-
-/***/ }),
-
-/***/ "@material-ui/core/Typography":
-/*!***********************************************!*\
-  !*** external "@material-ui/core/Typography" ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/Typography");
-
-/***/ }),
-
-/***/ "@material-ui/core/styles":
-/*!*******************************************!*\
-  !*** external "@material-ui/core/styles" ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/styles");
 
 /***/ }),
 
@@ -2025,6 +2072,28 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-is");
+
+/***/ }),
+
+/***/ "semantic-ui-react":
+/*!************************************!*\
+  !*** external "semantic-ui-react" ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("semantic-ui-react");
+
+/***/ }),
+
+/***/ "styled-jsx/style":
+/*!***********************************!*\
+  !*** external "styled-jsx/style" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("styled-jsx/style");
 
 /***/ }),
 
