@@ -50463,7 +50463,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
   }, __jsx(_components_MyGrid__WEBPACK_IMPORTED_MODULE_2__["default"], {
     columnNum: 2,
     header: "Login",
-    message: "Not registered yet? Contact your admin at email@example.com to create your credentials.",
+    message: "Not registered yet? Contact your admin at email@example.com to create your account.",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 7
@@ -50510,7 +50510,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fmeatripoli%2FClassWork%2FFinalProject%2Fpages%2Findex.js ***!
   \************************************************************************************************************************************/
@@ -50533,5 +50533,5 @@ module.exports = dll_0fb095e325d7ebf261c3;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

@@ -7,7 +7,7 @@ export default () => (
     <MyGrid 
         columnNum = {2} 
         header='Login'
-        message='Not registered yet? Contact your admin at email@example.com to create your credentials.'
+        message='Not registered yet? Contact your admin at email@example.com to create your account.'
     >
         <Form size="large">
             <Form.Input

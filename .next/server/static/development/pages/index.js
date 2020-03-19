@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -248,7 +248,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 }, __jsx(_components_MyGrid__WEBPACK_IMPORTED_MODULE_2__["default"], {
   columnNum: 2,
   header: "Login",
-  message: "Not registered yet? Contact your admin at email@example.com to create your credentials.",
+  message: "Not registered yet? Contact your admin at email@example.com to create your account.",
   __source: {
     fileName: _jsxFileName,
     lineNumber: 7
@@ -294,7 +294,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
