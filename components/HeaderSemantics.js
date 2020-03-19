@@ -4,10 +4,6 @@ import {Header,Grid,Menu,Button} from 'semantic-ui-react';
 const HeaderSemantics = () => (
     <div>
         <button>other button</button>
-        <Header as='h2' dividing>
-            Menu
-        </Header>
-        <Button primary>Primary</Button>
         <Grid columns={3} doubling>
             <Grid.Column>
             <Menu

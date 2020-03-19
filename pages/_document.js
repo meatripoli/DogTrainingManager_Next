@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+// import 'semantic-ui-css/semantic.min.css'
 
 class MyDocument extends Document {
     static async getInitialProps(ctx) {
