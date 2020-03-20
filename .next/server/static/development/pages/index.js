@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -237,64 +237,111 @@ var _jsxFileName = "/Users/meatripoli/ClassWork/FinalProject/pages/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-/* harmony default export */ __webpack_exports__["default"] = (() => __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 6
-  },
-  __self: undefined
-}, __jsx(_components_MyGrid__WEBPACK_IMPORTED_MODULE_2__["default"], {
-  columnNum: 2,
-  header: "Login",
-  message: "Not registered yet? Contact your admin at email@example.com to create your account.",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 7
-  },
-  __self: undefined
-}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Form"], {
-  size: "large",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 12
-  },
-  __self: undefined
-}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Form"].Input, {
-  fluid: true,
-  icon: "user",
-  iconPosition: "left",
-  placeholder: "Email address",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 13
-  },
-  __self: undefined
-}), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Form"].Input, {
-  fluid: true,
-  icon: "lock",
-  iconPosition: "left",
-  placeholder: "Password",
-  type: "password",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 19
-  },
-  __self: undefined
-}), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-  type: "submit",
-  size: "large",
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 26
-  },
-  __self: undefined
-}, "Log In")))));
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (() => {
+  const {
+    0: login,
+    1: setLogin
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    user: '',
+    password: ''
+  });
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log('pressed submit');
+    console.log(login); //done after data is sent for authentication
+    ///this clears object
+
+    setLogin({
+      user: '',
+      password: ''
+    });
+  };
+
+  const handleLoginChange = event => {
+    let newObj = {
+      [event.target.name]: event.target.value
+    }; ///this will not override the data that already exists in obj login
+
+    setLogin(_objectSpread({}, login, {}, newObj));
+  };
+
+  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: undefined
+  }, __jsx(_components_MyGrid__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    columnNum: 2,
+    header: "Login",
+    message: "Not registered yet? Contact your admin at email@example.com to create your account.",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: undefined
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Form"], {
+    size: "large",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: undefined
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Form"].Input, {
+    fluid: true,
+    icon: "user",
+    iconPosition: "left",
+    placeholder: "Username",
+    onChange: handleLoginChange,
+    name: "user",
+    type: "text",
+    value: login.user,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: undefined
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Form"].Input, {
+    fluid: true,
+    icon: "lock",
+    iconPosition: "left",
+    placeholder: "Password",
+    type: "password",
+    onChange: handleLoginChange,
+    name: "password",
+    type: "text",
+    value: login.password,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: undefined
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+    type: "submit",
+    size: "large",
+    onClick: handleSubmit,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 57
+    },
+    __self: undefined
+  }, "Log In"))));
+});
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/

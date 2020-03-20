@@ -50442,67 +50442,108 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
-/* harmony import */ var _components_MyGrid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/MyGrid */ "./components/MyGrid.js");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
+/* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
+/* harmony import */ var _components_MyGrid__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/MyGrid */ "./components/MyGrid.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
+
 var _jsxFileName = "/Users/meatripoli/ClassWork/FinalProject/pages/index.js";
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  var _jsx;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])({
+    user: '',
+    password: ''
+  }),
+      login = _useState[0],
+      setLogin = _useState[1];
+
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    console.log('pressed submit');
+    console.log(login); //done after data is sent for authentication
+    ///this clears object
+
+    setLogin({
+      user: '',
+      password: ''
+    });
+  };
+
+  var handleLoginChange = function handleLoginChange(event) {
+    var newObj = Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])({}, event.target.name, event.target.value); ///this will not override the data that already exists in obj login
+
+
+    setLogin(_objectSpread({}, login, {}, newObj));
+  };
+
+  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6
+      lineNumber: 29
     },
     __self: this
-  }, __jsx(_components_MyGrid__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, __jsx(_components_MyGrid__WEBPACK_IMPORTED_MODULE_3__["default"], {
     columnNum: 2,
     header: "Login",
     message: "Not registered yet? Contact your admin at email@example.com to create your account.",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 30
     },
     __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Form"], {
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Form"], {
     size: "large",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 35
     },
     __self: this
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Form"].Input, {
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Form"].Input, {
     fluid: true,
     icon: "user",
     iconPosition: "left",
-    placeholder: "Email address",
+    placeholder: "Username",
+    onChange: handleLoginChange,
+    name: "user",
+    type: "text",
+    value: login.user,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 36
     },
     __self: this
-  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Form"].Input, {
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Form"].Input, (_jsx = {
     fluid: true,
     icon: "lock",
     iconPosition: "left",
     placeholder: "Password",
     type: "password",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 19
-    },
-    __self: this
-  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+    onChange: handleLoginChange,
+    name: "password"
+  }, Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(_jsx, "type", "text"), Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(_jsx, "value", login.password), Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(_jsx, "__source", {
+    fileName: _jsxFileName,
+    lineNumber: 46
+  }), Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(_jsx, "__self", this), _jsx)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__["Button"], {
     type: "submit",
     size: "large",
+    onClick: handleSubmit,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 57
     },
     __self: this
   }, "Log In"))));
@@ -50510,7 +50551,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fmeatripoli%2FClassWork%2FFinalProject%2Fpages%2Findex.js ***!
   \************************************************************************************************************************************/
@@ -50533,5 +50574,5 @@ module.exports = dll_0fb095e325d7ebf261c3;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

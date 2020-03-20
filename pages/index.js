@@ -1,9 +1,32 @@
 import Layout from '../components/Layout';
 import MyGrid from '../components/MyGrid';
 import {Form, Button} from 'semantic-ui-react';
+import { useState } from 'react';
 
-export default () => (
-  <Layout>
+export default () => {
+  const [login,setLogin] = useState({
+    user: '',
+    password: ''
+  })
+  const handleSubmit = (event)=>{
+    event.preventDefault();
+    console.log('pressed submit')
+    console.log(login)
+    //done after data is sent for authentication
+    ///this clears object
+    setLogin({
+      user: '',
+      password: ''
+    });
+
+  };
+  const handleLoginChange = (event)=>{
+    let newObj = {[event.target.name]: event.target.value};
+    ///this will not override the data that already exists in obj login
+    setLogin({...login,...newObj});
+  }
+
+  return (<Layout>
     <MyGrid 
         columnNum = {2} 
         header='Login'
@@ -14,7 +37,11 @@ export default () => (
                 fluid
                 icon="user"
                 iconPosition="left"
-                placeholder="Email address"
+                placeholder="Username"
+                onChange={handleLoginChange}
+                name='user'
+                type='text'
+                value={login.user}
             />
             <Form.Input
                 fluid
@@ -22,9 +49,13 @@ export default () => (
                 iconPosition="left"
                 placeholder="Password"
                 type="password"
+                onChange={handleLoginChange}
+                name='password'
+                type='text'
+                value={login.password}
             />
-            <Button type='submit' size="large">Log In</Button>
+            <Button type='submit' size="large" onClick={handleSubmit}>Log In</Button>
         </Form>
     </MyGrid>
   </Layout>
-  );
+  )};
