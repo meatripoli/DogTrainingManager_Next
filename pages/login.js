@@ -11,19 +11,14 @@ export default () => {
   })
   const handleSubmit = async (event)=>{
     event.preventDefault();
-    console.log('pressed submit')
-    console.log(login)
-    // await axios.post('/api/login',login)
-    await axios.post('/login',login)
-    //await axios.get('http://localhost:3000/login/'+login.user)
+    let response = await axios.post('/login',login)
+    console.log(response)
     //done after data is sent for authentication
     ///this clears object
-    console.log('get request success');
     setLogin({
       user: '',
       password: ''
     });
-    
   };
   const handleLoginChange = (event)=>{
     let newObj = {[event.target.name]: event.target.value};
@@ -61,5 +56,5 @@ export default () => {
             <Button type='submit' size="large" onClick={handleSubmit}>Log In</Button>
         </Form>
     </MyGrid>
-  </Layout>
-  )};
+  </Layout>);
+};

@@ -53230,28 +53230,26 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
       setLogin = _useState[1];
 
   var handleSubmit = function handleSubmit(event) {
+    var response;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.async(function handleSubmit$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             event.preventDefault();
-            console.log('pressed submit');
-            console.log(login); // await axios.post('/api/login',login)
-
-            _context.next = 5;
+            _context.next = 3;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default.a.awrap(axios__WEBPACK_IMPORTED_MODULE_6___default.a.post('/login', login));
 
-          case 5:
-            //await axios.get('http://localhost:3000/login/'+login.user)
-            //done after data is sent for authentication
+          case 3:
+            response = _context.sent;
+            console.log(response); //done after data is sent for authentication
             ///this clears object
-            console.log('get request success');
+
             setLogin({
               user: '',
               password: ''
             });
 
-          case 7:
+          case 6:
           case "end":
             return _context.stop();
         }

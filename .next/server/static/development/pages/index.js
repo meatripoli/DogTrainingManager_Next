@@ -253,14 +253,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
   const handleSubmit = async event => {
     event.preventDefault();
-    console.log('pressed submit');
-    console.log(login); // await axios.post('/api/login',login)
-
-    await axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/login', login); //await axios.get('http://localhost:3000/login/'+login.user)
-    //done after data is sent for authentication
+    let response = await axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/login', login);
+    console.log(response); //done after data is sent for authentication
     ///this clears object
 
-    console.log('get request success');
     setLogin({
       user: '',
       password: ''
