@@ -8,6 +8,11 @@ module.exports = (sequelize,DataTypes) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        adminflag: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: 'n'
         }
     });
     return Model;

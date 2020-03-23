@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import SignInLayout from '../components/SignInLayout';
 import MyGrid from '../components/MyGrid';
 import {Form, Button} from 'semantic-ui-react';
 import { useState } from 'react';
@@ -26,7 +26,7 @@ export default () => {
     setLogin({...login,...newObj});
   }
 
-  return (<Layout>
+  return (<SignInLayout>
     <MyGrid 
         columnNum = {2} 
         header='Login'
@@ -56,5 +56,5 @@ export default () => {
             <Button type='submit' size="large" onClick={handleSubmit}>Log In</Button>
         </Form>
     </MyGrid>
-  </Layout>);
+  </SignInLayout>);
 };

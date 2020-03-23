@@ -1,4 +1,4 @@
-import Layout from '../components/Layout';
+import SignInLayout from '../components/SignInLayout';
 import MyGrid from '../components/MyGrid';
 import CustomerForm from '../components/CustomerForm';
 
@@ -6,7 +6,7 @@ import CustomerForm from '../components/CustomerForm';
 
 export default function About() {
   return (
-    <Layout>
+    <SignInLayout>
       <MyGrid 
         columnNum = {1} 
         header='Board and Train Program Form'
@@ -14,6 +14,6 @@ export default function About() {
       >
         <CustomerForm/>
       </MyGrid>
-    </Layout>
+    </SignInLayout>
   );
 }

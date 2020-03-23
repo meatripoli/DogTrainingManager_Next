@@ -125,7 +125,7 @@ module.exports = (sequelize,DataTypes) =>{
             allowNull: false,
         },
         ageFixed: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         dateofCycle: {
