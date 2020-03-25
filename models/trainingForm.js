@@ -199,6 +199,14 @@ module.exports = (sequelize,DataTypes) =>{
         emergencyContactCellPhone: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        createdAt: { 
+            type: DataTypes.DATE, 
+            defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
+        },
+        updatedAt: { 
+            type: DataTypes.DATE, 
+            defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
         }
     });
 };

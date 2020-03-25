@@ -12,20 +12,28 @@ module.exports = (sequelize,DataTypes) => {
         goHomeDate: {
             type: DataTypes.DATE,
             allowNull: true
+        },
+        createdAt: { 
+            type: DataTypes.DATE, 
+            defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
+        },
+        updatedAt: { 
+            type: DataTypes.DATE, 
+            defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
         }
     });
 
-    Model.associate =()=>{
-        Model.belongsTo(models.trainingform, {
-            foreignKey: {
-            allowNull: true
-            }
-        });
-        models.trainingform.hasOne(models.dogstatus, {
-            foreignKey: {
-                allowNull: true
-            }
-        });
-    }
+    // Model.associate =(models)=>{
+    //     Model.belongsTo(models.trainingform, {
+    //         foreignKey: {
+    //         allowNull: true
+    //         }
+    //     });
+    //     models.trainingform.hasOne(models.dogstatus, {
+    //         foreignKey: {
+    //             allowNull: true
+    //         }
+    //     });
+    // }
     return Model;
 }

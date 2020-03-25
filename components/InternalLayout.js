@@ -4,20 +4,20 @@ import {Menu, Segment, Button, Icon} from 'semantic-ui-react';
 //if admin flag = y
 export default function InternalLayout(props) {
     let menuItemsAdmin = [
-        {name:'dogs',icon:'address book outline icon',href:''},
-        {name:'archive',icon:'archive icon',href:''},
-        {name:'users',icon:'users icon',href:''}
+        {name:'dogs',icon:'address book outline',href:''},
+        {name:'archive',icon:'archive',href:''},
+        {name:'users',icon:'users',href:''}
     ]
     let menuItems = [
-        {name:'dogs',icon:'address book outline icon',href:''},
-        {name:'archive',icon:'archive icon',href:''},
-        {name:'user profile',icon:'user circle icon',href:''}
+        {name:'dogs',icon:'address book outline',href:''},
+        {name:'archive',icon:'archive',href:''},
+        {name:'user profile',icon:'user circle',href:''}
     ]
     return (<>
         <Menu  style={{background: 'linear-gradient(45deg, #019474 30%, #b5b5b5 90%)'}} pointing secondary>
             {props.adminFlag==='y'? 
-                menuItemsAdmin.map(item=><Menu.Item  icon={item.icon} name={item.name} href={item.href}/>)
-                :menuItems.map(item=><Menu.Item  icon={item.icon} name={item.name} href={item.href}/>)}
+                menuItemsAdmin.map((item,index)=><Menu.Item key={index} icon={item.icon} name={item.name} href={item.href}/>)
+                :menuItems.map((item,index)=><Menu.Item key={index} icon={item.icon} name={item.name} href={item.href}/>)}
             <Menu.Menu position='right'>
                 <Menu.Item  icon="sign-out alternate" name='logout' href="/"/>
             </Menu.Menu>

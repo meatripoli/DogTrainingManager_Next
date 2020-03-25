@@ -1,6 +1,7 @@
 'use strict';
 const user = require ('./user');
 const trainingForm = require ('./trainingForm');
+const dogStatus = require ('./dogStatus');
 
 const Sequelize = require('sequelize');
 const env = process.env.NODE_ENV || 'development';
@@ -14,7 +15,8 @@ if (config.use_env_variable) {
 }
 const db = {
   user: user(sequelize,Sequelize),
-  trainingForm: trainingForm(sequelize,Sequelize)
+  trainingForm: trainingForm(sequelize,Sequelize),
+  dogStatus: dogStatus(sequelize,Sequelize),
 };
 
 Object.keys(db).forEach(modelName => {

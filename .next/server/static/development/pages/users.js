@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -116,28 +116,28 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 function InternalLayout(props) {
   let menuItemsAdmin = [{
     name: 'dogs',
-    icon: 'address book outline icon',
+    icon: 'address book outline',
     href: ''
   }, {
     name: 'archive',
-    icon: 'archive icon',
+    icon: 'archive',
     href: ''
   }, {
     name: 'users',
-    icon: 'users icon',
+    icon: 'users',
     href: ''
   }];
   let menuItems = [{
     name: 'dogs',
-    icon: 'address book outline icon',
+    icon: 'address book outline',
     href: ''
   }, {
     name: 'archive',
-    icon: 'archive icon',
+    icon: 'archive',
     href: ''
   }, {
     name: 'user profile',
-    icon: 'user circle icon',
+    icon: 'user circle',
     href: ''
   }];
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"], {
@@ -146,11 +146,13 @@ function InternalLayout(props) {
     },
     pointing: true,
     secondary: true
-  }, props.adminFlag === 'y' ? menuItemsAdmin.map(item => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
+  }, props.adminFlag === 'y' ? menuItemsAdmin.map((item, index) => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
+    key: index,
     icon: item.icon,
     name: item.name,
     href: item.href
-  })) : menuItems.map(item => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
+  })) : menuItems.map((item, index) => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
+    key: index,
     icon: item.icon,
     name: item.name,
     href: item.href
@@ -193,9 +195,126 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     }
   }, __jsx("p", null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Icon"], {
     name: props.icon
-  }), " ", props.buttonName)),
+  }))),
   closeIcon: true
-}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Header, null, props.title), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Content, null, props.children)));
+}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Header, null, props.title), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Content, null, props.modalContent), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Modal"].Actions, null, props.modalActions)));
+
+/***/ }),
+
+/***/ "./components/MyGrid.js":
+/*!******************************!*\
+  !*** ./components/MyGrid.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+var _jsxFileName = "/Users/meatripoli/ClassWork/FinalProject/components/MyGrid.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+/* harmony default export */ __webpack_exports__["default"] = (props => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], {
+  centered: true,
+  columns: props.columnNum,
+  style: {
+    marginTop: '20px'
+  },
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 4
+  },
+  __self: undefined
+}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 5
+  },
+  __self: undefined
+}, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
+  as: "h2",
+  textAlign: "center",
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 6
+  },
+  __self: undefined
+}, props.header), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 9
+  },
+  __self: undefined
+}, props.children), props.message !== '' && __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Message"], {
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 12
+  },
+  __self: undefined
+}, props.message))));
+
+/***/ }),
+
+/***/ "./components/RegisterUser.js":
+/*!************************************!*\
+  !*** ./components/RegisterUser.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_MyGrid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/MyGrid */ "./components/MyGrid.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+const adminDropdown = [{
+  key: 'o',
+  text: '',
+  value: ''
+}, {
+  key: 'y',
+  text: 'Yes',
+  value: 'yes'
+}, {
+  key: 'n',
+  text: 'No',
+  value: 'no'
+}];
+/* harmony default export */ __webpack_exports__["default"] = (props => {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_components_MyGrid__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    columnNum: 1,
+    header: props.title,
+    message: ""
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"], {
+    size: "large"
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Input, {
+    fluid: true,
+    icon: "user",
+    iconPosition: "left",
+    placeholder: "Username",
+    name: "user",
+    type: "text"
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Form"].Input, {
+    fluid: true,
+    icon: "lock",
+    iconPosition: "left",
+    placeholder: "Password",
+    type: "password",
+    name: "password"
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__["Checkbox"], {
+    label: "Administrator"
+  }))));
+});
 
 /***/ }),
 
@@ -213,8 +332,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_ModalLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ModalLayout */ "./components/ModalLayout.js");
+/* harmony import */ var _components_RegisterUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/RegisterUser */ "./components/RegisterUser.js");
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
 
 
 const tableData = [{
@@ -234,30 +355,45 @@ const tableData = [{
   admin: 'n',
   gender: 'Male'
 }];
+
+const ModalContent = props => __jsx("p", null, props.text);
+
+const ModalAction = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+  positive: true,
+  content: "OK"
+});
+
 /* harmony default export */ __webpack_exports__["default"] = (() => {
   //to edit user info click on name and a pop up will ask you 
   return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"], {
+    basic: "very",
     striped: true,
     sortable: true,
     celled: true
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Header, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Username"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Password"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Admin"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Edit"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Remove"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Body, null, tableData.map(({
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Header, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Username"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Password"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Admin"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Body, null, tableData.map(({
     user,
     admin
   }) => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
     key: user
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, user), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, "******"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, admin), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, __jsx(_components_ModalLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    buttonColor: "blue",
-    buttonLocation: "left",
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, user), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, "******"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, admin, __jsx(_components_ModalLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    buttonLocation: "right",
     buttonName: "Edit",
     icon: "pencil alternate",
-    title: "Edit user"
-  }, __jsx("p", null, "stuff about editing user"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, __jsx(_components_ModalLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    buttonColor: "red",
-    buttonLocation: "left",
+    title: "Edit user",
+    modalContent: __jsx(_components_RegisterUser__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      title: "Edit user"
+    }),
+    modalActions: __jsx(ModalAction, null)
+  }), __jsx(_components_ModalLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    buttonLocation: "right",
     buttonName: "Remove",
-    icon: "minus",
-    title: "Delete user"
-  }, __jsx("p", null, "stuff about deleting user")))))));
+    icon: "trash",
+    title: "Delete user",
+    modalContent: __jsx(ModalContent, {
+      text: "Are you sure you want to delete this account?"
+    }),
+    modalActions: __jsx(ModalAction, null)
+  }))))));
 });
 
 /***/ }),
@@ -276,13 +412,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_InternalLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/InternalLayout */ "./components/InternalLayout.js");
 /* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Table */ "./components/Table.js");
 /* harmony import */ var _components_ModalLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/ModalLayout */ "./components/ModalLayout.js");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_RegisterUser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/RegisterUser */ "./components/RegisterUser.js");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
+
+
+const ModalAction = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Button"], {
+  positive: true,
+  content: "OK"
+});
 
 /* harmony default export */ __webpack_exports__["default"] = (() => {
   return __jsx(_components_InternalLayout__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -292,13 +436,17 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     buttonLocation: "right",
     buttonName: "New User",
     icon: "plus",
-    title: "Add a new user"
-  }, __jsx("p", null, "stuff about adding user")), __jsx(_components_Table__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+    title: "Add a new user",
+    modalContent: __jsx(_components_RegisterUser__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      title: "Add User"
+    }),
+    modalActions: __jsx(ModalAction, null)
+  }), __jsx(_components_Table__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 });
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/users.js ***!
   \******************************/
