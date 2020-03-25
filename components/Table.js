@@ -1,18 +1,29 @@
 import { Table, Button, Icon } from 'semantic-ui-react';
 import ModalLayout from '../components/ModalLayout';
 import RegisterUser from '../components/RegisterUser';
+import {useEffect,useState} from 'react';
+import axios from 'axios';
 
-const tableData = [
-    { user: 'John', admin: 'y', gender: 'Male' },
-    { user: 'Amber', admin: 'n', gender: 'Female' },
-    { user: 'Leslie', admin: 'n', gender: 'Other' },
-    { user: 'Ben', admin: 'n', gender: 'Male' },
-  ]
 const ModalContent = (props) => <p>{props.text}</p>;
 const ModalAction = () => <Button positive content='OK' />
 
-export default ()=>{
-
+export default (props)=>{
+    const loadingData =[{
+        id:0,
+        user:'Loading',
+        adminflag:'Loading',
+        password:'Loading'
+    }]
+    const [data,setData] = useState([]);
+    ///when first loading pull all the users from database and display them
+    const tableData = data.length===0? loadingData:data
+    useEffect(() => {
+        axios.get('/api/users')
+        .then(res => {
+            setData(res.data);
+        })
+        .catch(err => console.log('Error:',err))
+    },[]);
     //to edit user info click on name and a pop up will ask you 
     return(
         <Table basic='very' striped sortable celled >
@@ -40,12 +51,12 @@ export default ()=>{
                 </Table.Row>
             </Table.Header>
             <Table.Body>
-            {tableData.map(({ user,admin }) => (
-                <Table.Row key={user}>
+            {tableData.map(({ user,adminflag,id }) => (
+                <Table.Row key={id}>
                     <Table.Cell>{user}</Table.Cell>
                     <Table.Cell>******</Table.Cell>
                     <Table.Cell>
-                        {admin}
+                        {adminflag}
                         <ModalLayout 
                             buttonLocation='right' 
                             buttonName='Edit' 

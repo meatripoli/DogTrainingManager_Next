@@ -15,9 +15,10 @@ app.prepare()
 .then(() => {
     const server = express();
     //Routes
-    require('./routes/htmlRoute')(handle,server);
-    require('./routes/loginRoute')(handle,server);   
-    require('./routes/formRoute')(handle,server);    
+    
+    require('./routes/userRoute')(handle,server);   
+    require('./routes/formRoute')(handle,server);   
+    require('./routes/htmlRoute')(handle,server); 
     // Starting the server, syncing our models
     db.sequelize.sync(syncOptions)
     server.listen(3000, (err) => {

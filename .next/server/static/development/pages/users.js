@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -109,7 +109,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
- //later feature to implement only show users if user logged in is admin
+ //later feature to implement add a user profile for each user
 //send the admin flag in the props
 //if admin flag = y
 
@@ -126,7 +126,8 @@ function InternalLayout(props) {
     name: 'users',
     icon: 'users',
     href: ''
-  }];
+  } //{name:'user profile',icon:'user circle',href:''}
+  ];
   let menuItems = [{
     name: 'dogs',
     icon: 'address book outline',
@@ -135,18 +136,15 @@ function InternalLayout(props) {
     name: 'archive',
     icon: 'archive',
     href: ''
-  }, {
-    name: 'user profile',
-    icon: 'user circle',
-    href: ''
-  }];
+  } //{name:'user profile',icon:'user circle',href:''}
+  ];
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"], {
     style: {
       background: 'linear-gradient(45deg, #019474 30%, #b5b5b5 90%)'
     },
     pointing: true,
     secondary: true
-  }, props.adminFlag === 'y' ? menuItemsAdmin.map((item, index) => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
+  }, props.adminFlag == 'y' ? menuItemsAdmin.map((item, index) => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
     key: index,
     icon: item.icon,
     name: item.name,
@@ -277,19 +275,6 @@ __webpack_require__.r(__webpack_exports__);
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
-const adminDropdown = [{
-  key: 'o',
-  text: '',
-  value: ''
-}, {
-  key: 'y',
-  text: 'Yes',
-  value: 'yes'
-}, {
-  key: 'n',
-  text: 'No',
-  value: 'no'
-}];
 /* harmony default export */ __webpack_exports__["default"] = (props => {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_components_MyGrid__WEBPACK_IMPORTED_MODULE_1__["default"], {
     columnNum: 1,
@@ -333,28 +318,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_ModalLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ModalLayout */ "./components/ModalLayout.js");
 /* harmony import */ var _components_RegisterUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/RegisterUser */ "./components/RegisterUser.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const tableData = [{
-  user: 'John',
-  admin: 'y',
-  gender: 'Male'
-}, {
-  user: 'Amber',
-  admin: 'n',
-  gender: 'Female'
-}, {
-  user: 'Leslie',
-  admin: 'n',
-  gender: 'Other'
-}, {
-  user: 'Ben',
-  admin: 'n',
-  gender: 'Male'
-}];
+
+
 
 const ModalContent = props => __jsx("p", null, props.text);
 
@@ -363,8 +335,25 @@ const ModalAction = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["
   content: "OK"
 });
 
-/* harmony default export */ __webpack_exports__["default"] = (() => {
-  //to edit user info click on name and a pop up will ask you 
+/* harmony default export */ __webpack_exports__["default"] = (props => {
+  const loadingData = [{
+    id: 0,
+    user: 'Loading',
+    adminflag: 'Loading',
+    password: 'Loading'
+  }];
+  const {
+    0: data,
+    1: setData
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]); ///when first loading pull all the users from database and display them
+
+  const tableData = data.length === 0 ? loadingData : data;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api/users').then(res => {
+      setData(res.data);
+    }).catch(err => console.log('Error:', err));
+  }, []); //to edit user info click on name and a pop up will ask you 
+
   return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"], {
     basic: "very",
     striped: true,
@@ -372,10 +361,11 @@ const ModalAction = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["
     celled: true
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Header, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Username"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Password"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].HeaderCell, null, "Admin"))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Body, null, tableData.map(({
     user,
-    admin
+    adminflag,
+    id
   }) => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Row, {
-    key: user
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, user), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, "******"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, admin, __jsx(_components_ModalLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    key: id
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, user), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, "******"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Table"].Cell, null, adminflag, __jsx(_components_ModalLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
     buttonLocation: "right",
     buttonName: "Edit",
     icon: "pencil alternate",
@@ -421,14 +411,19 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+ //import { useRouter } from 'next/router'
+
 
 
 const ModalAction = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["Button"], {
   positive: true,
   content: "OK"
-});
+}); //the admin flag is based on who signs in at the beginning 
 
-/* harmony default export */ __webpack_exports__["default"] = (() => {
+
+/* harmony default export */ __webpack_exports__["default"] = (props => {
+  ///figure out how to send the admin flag from the login page
+  //let router = useRouter();
   return __jsx(_components_InternalLayout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     adminFlag: "y"
   }, __jsx(_components_ModalLayout__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -446,7 +441,7 @@ const ModalAction = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!******************************!*\
   !*** multi ./pages/users.js ***!
   \******************************/
@@ -455,6 +450,17 @@ const ModalAction = () => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_5__["
 
 module.exports = __webpack_require__(/*! /Users/meatripoli/ClassWork/FinalProject/pages/users.js */"./pages/users.js");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 

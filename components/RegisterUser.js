@@ -1,11 +1,6 @@
 import MyGrid from '../components/MyGrid';
 import {Form, Checkbox} from 'semantic-ui-react';
 
-const adminDropdown = [
-    { key: 'o', text: '', value: '' },
-    { key: 'y', text: 'Yes', value: 'yes' },
-    { key: 'n', text: 'No', value: 'no' },
-]
 export default (props) => {
     return (<>
     <MyGrid 
