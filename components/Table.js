@@ -5,7 +5,7 @@ import {useEffect,useState} from 'react';
 import axios from 'axios';
 
 const ModalContent = (props) => <p>{props.text}</p>;
-const ModalAction = () => <Button positive content='OK' />
+const ModalAction = (props) => <Button positive content='OK' onClick={props.handleButton}/>
 
 export default (props)=>{
     const loadingData =[{
@@ -52,27 +52,28 @@ export default (props)=>{
             </Table.Header>
             <Table.Body>
             {tableData.map(({ user,adminflag,id }) => (
-                <Table.Row key={id}>
+                <Table.Row key={id} >
                     <Table.Cell>{user}</Table.Cell>
                     <Table.Cell>******</Table.Cell>
                     <Table.Cell>
-                        {adminflag}
-                        <ModalLayout 
+                        {adminflag===true?'yes':'no'}
+                        {/* <ModalLayout 
                             buttonLocation='right' 
                             buttonName='Edit' 
                             icon='pencil alternate' 
                             title='Edit user'
-                            modalContent={<RegisterUser title='Edit user'/>}
                             modalActions={<ModalAction />}
+                            current={{user:user,adminflag:adminflag,id:id}}
                         >
-                        </ModalLayout>
+                        </ModalLayout> */}
                         <ModalLayout 
                             buttonLocation='right' 
                             buttonName='Remove' 
                             icon='trash' 
                             title='Delete user'
-                            modalContent={<ModalContent text='Are you sure you want to delete this account?'/>}
+                            modalContent={<ModalContent text={`Are you sure you want to delete ${user} account?`}/>}
                             modalActions={<ModalAction />}
+                            current={{user:user,adminflag:adminflag,id:id,password:''}}
                         >
                         </ModalLayout>
                     </Table.Cell>
@@ -82,3 +83,12 @@ export default (props)=>{
         </Table>
     );
 }
+
+/*
+tablemodalstate={modalstate}
+            tablehandleModal={handleModal}
+            tablehandleButton={handleButton}
+            tableinputchange={handleInput}
+            tablecheckboxchange={handleCheckBox}
+            tableuser={user}
+*/

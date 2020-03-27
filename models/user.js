@@ -10,9 +10,9 @@ module.exports = (sequelize,DataTypes) => {
             allowNull: false,
         },
         adminflag: {
-            type: DataTypes.STRING,
+            type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: 'n'
+            defaultValue: false
         },
         createdAt: { 
             type: DataTypes.DATE, 

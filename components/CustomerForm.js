@@ -120,7 +120,9 @@ export default () => {
         emergencyContactCellPhone: ''
     };
     const [form,setForm]=useState(initialState)
-
+    function refreshPage() {
+        window.location.reload(false);
+      }
     const handleInputChange = (event)=>{
         let newObj = {[event.target.name]: event.target.value};
         ///this will not override the data that already exists in obj login
@@ -142,13 +144,14 @@ export default () => {
         await axios.post('/form',form)
         ///this clears object
         setForm(initialState);
+        refreshPage();
     };
 
     return(
         <Form>
             <Form.Group widths='equal'>
                 <Form.Input fluid label={`Dog's name`} placeholder='Name' name='dogName' onChange={handleInputChange} />
-                <Form.Input fluid label='Age (if dog is not 1 year old please put 0)' type='number' placeholder='Age' name='dogAge' onChange={handleInputChange} />
+                <Form.Input fluid label='Age (if dog is not 1 year old yet please put 0)' type='number' placeholder='Age' name='dogAge' onChange={handleInputChange} />
                 <Form.Input fluid label='Breed' placeholder='Breed' name='dogBreed' onChange={handleInputChange} />
                 <Form.Select
                 fluid

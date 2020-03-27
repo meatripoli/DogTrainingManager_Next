@@ -9,7 +9,7 @@ export default (props) => (
             <Segment>
                 {props.children}
             </Segment>
-            {props.message !=='' && <Message>{props.message}</Message>}
+            {props.message !=='' && <Message color={props.color}>{props.body}</Message>}
         </Grid.Column>
     </Grid>
 )

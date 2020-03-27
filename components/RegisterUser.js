@@ -1,5 +1,5 @@
 import MyGrid from '../components/MyGrid';
-import {Form, Checkbox} from 'semantic-ui-react';
+import {Form} from 'semantic-ui-react';
 
 export default (props) => {
     return (<>
@@ -14,9 +14,10 @@ export default (props) => {
                 icon="user"
                 iconPosition="left"
                 placeholder="Username"
-                
-                name='user'
+                name='username'
                 type='text'
+                onChange={props.inputchange}
+                value = {props.value.username}
             />
             <Form.Input
                 fluid
@@ -24,10 +25,11 @@ export default (props) => {
                 iconPosition="left"
                 placeholder="Password"
                 type="password"
-                
                 name='password'
+                onChange={props.inputchange}
+                value = {props.value.password}
             />
-            <Checkbox label='Administrator' />
+            <Form.Checkbox label='Administrator' name='admin' onChange={props.checkboxchange}/>
         </Form>
     </MyGrid>
     </>)
