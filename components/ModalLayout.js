@@ -10,7 +10,7 @@ export default (props) => {
   }
   let switchFun = async (data) => {switch (props.buttonName) {
     case 'Remove':
-      if(!data.adminflag){
+      if(data.adminflag==='n'){
         try{
           response = await axios.delete('/api/users',{data:data});
           if(response.status===200){

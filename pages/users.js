@@ -1,5 +1,5 @@
 import InternalLayout from '../components/InternalLayout';
-import Table from '../components/Table';
+import Table from '../components/UsersTable';
 import ModalLayout from '../components/ModalLayout';
 
 //import { useRouter } from 'next/router';

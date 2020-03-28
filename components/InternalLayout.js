@@ -4,14 +4,14 @@ import {Menu, Segment, Button, Icon} from 'semantic-ui-react';
 //if admin flag = y
 export default function InternalLayout(props) {
     let menuItemsAdmin = [
-        {name:'dogs',icon:'address book outline',href:''},
-        {name:'archive',icon:'archive',href:''},
-        {name:'users',icon:'users',href:''},
+        {name:'dogs',icon:'address book outline',href:'/dogs'},
+        {name:'archive',icon:'archive',href:'/archive'},
+        {name:'users',icon:'users',href:'/users'},
         //{name:'user profile',icon:'user circle',href:''}
     ]
     let menuItems = [
-        {name:'dogs',icon:'address book outline',href:''},
-        {name:'archive',icon:'archive',href:''},
+        {name:'dogs',icon:'address book outline',href:'/dogs'},
+        {name:'archive',icon:'archive',href:'/archive'},
         //{name:'user profile',icon:'user circle',href:''}
     ]
     return (<>

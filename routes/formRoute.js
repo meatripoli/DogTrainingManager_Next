@@ -61,7 +61,12 @@ module.exports = (handle,server) => {
             console.log(res)
         }).catch((err)=>{
             console.log(err)
-        })
-        
+        })    
     })
+    server.get('/api/form',(req,res)=>{
+        db.trainingForm
+        .findAll().then((queryResp)=>{
+            res.json(queryResp);
+        });
+    });
 };
