@@ -200,6 +200,11 @@ module.exports = (sequelize,DataTypes) =>{
             type: DataTypes.STRING,
             allowNull: false,
         },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: 'active'
+        },
         createdAt: { 
             type: DataTypes.DATE, 
             defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')

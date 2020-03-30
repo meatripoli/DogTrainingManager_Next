@@ -1,8 +1,8 @@
 import InternalLayout from '../components/InternalLayout';
 import TableTemplate from '../components/TableTemplate';
-import ModalLayout from '../components/ModalLayout';
 import {useEffect,useState} from 'react';
 import axios from 'axios';
+import Link from 'next/link';
 
 export default (props) => {
     const loadingData =[{
@@ -23,7 +23,7 @@ export default (props) => {
         foodTime:'',
     }];
     const [data,setData] = useState(loadingData);
-    const ownerInfo = (text,rowData)=>{ return <>
+    const ownerInfo = (rowData)=>{ return <>
         <p>
             <span style={{fontWeight:"bold"}}>{'Name: '}</span>
             {`${rowData.ownerFirstName} ${rowData.ownerLastName}`}
@@ -37,7 +37,7 @@ export default (props) => {
             {rowData.ownerEmail}
         </p>
     </>}
-    const vetInfo = (text,rowData)=>{ return <>
+    const vetInfo = (rowData)=>{ return <>
         <p>
             <span style={{fontWeight:"bold"}}>{'Name: '}</span>
             {rowData.vetName}
@@ -47,7 +47,7 @@ export default (props) => {
             {rowData.vetPhone}
         </p>
     </>}
-    const foodInfo = (text,rowData)=>{ return <>
+    const foodInfo = (rowData)=>{ return <>
         <p>
             <span style={{fontWeight:"bold"}}>{'Name: '}</span>
             {rowData.foodName}
@@ -61,6 +61,7 @@ export default (props) => {
             {rowData.foodTime}
         </p>
     </>}
+    const nameInfo = (rowData)=> <Link href="/dogprofile"><a>{rowData.dogName}</a></Link>
     const createTableData = (array)=>{
         setData( array.map(object=>{
             return ({
@@ -93,8 +94,8 @@ export default (props) => {
         tableHeaderName:'dogName',
         name: 'Dog Name',
         clickFunction: '',
-        haschildren: false,
-        children: ''
+        haschildren: true,
+        children: nameInfo
     },
     {
         tableHeaderName:'dogAge',
@@ -150,5 +151,5 @@ export default (props) => {
             <TableTemplate header={headerData} table={data}>
             </TableTemplate>
         </InternalLayout>
-        </>
+    </>
 }

@@ -16,9 +16,8 @@ export default (props)=>{
             {props.table.map((row) => (
                 <Table.Row key={'key'+row.id}>
                     {props.header.map(({tableHeaderName,haschildren,children})=>{
-                        console.log(tableHeaderName,children)
                         return (
-                        <Table.Cell key={tableHeaderName+row.id}>{haschildren?children(row[tableHeaderName],row):row[tableHeaderName]}</Table.Cell>
+                        <Table.Cell key={tableHeaderName+row.id}>{haschildren?children(row,row[tableHeaderName]):row[tableHeaderName]}</Table.Cell>
                     )})}
                 </Table.Row>
             ))}

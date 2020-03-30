@@ -20,7 +20,11 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/archive": [
+    "/dogprofile/[name]": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/dogs": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

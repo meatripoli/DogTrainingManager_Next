@@ -21,7 +21,7 @@ export default (props) => {
         .catch(err => console.log('Error:',err))
     },[]);
     //to edit user info click on name and a pop up will ask you 
-    const mymodal = (text,rowdata) => <>
+    const mymodal = (rowdata,text) => <>
         {text}
         <ModalLayout 
             buttonLocation='right' 

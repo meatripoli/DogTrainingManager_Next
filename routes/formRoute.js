@@ -69,4 +69,12 @@ module.exports = (handle,server) => {
             res.json(queryResp);
         });
     });
+    server.get('/api/dogs',(req,res)=>{
+        db.trainingForm
+        .findAll({where:{
+            status: 'active'
+        }}).then((queryResp)=>{
+            res.json(queryResp);
+        });
+    });
 };
