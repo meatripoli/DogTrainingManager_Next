@@ -1,10 +1,12 @@
 import InternalLayout from '../components/InternalLayout';
 import TableTemplate from '../components/TableTemplate';
-import {useEffect,useState} from 'react';
+import {useEffect,useState,useContext} from 'react';
 import axios from 'axios';
 import Link from 'next/link';
+import UserContext from '../components/util/UserContext';
 
 export default (props) => {
+    const {dogdata,handleDogInfo} = useContext(UserContext);
     const loadingData =[{
         id: 0,
         dogName:'Loading',
@@ -61,7 +63,12 @@ export default (props) => {
             {rowData.foodTime}
         </p>
     </>}
-    const nameInfo = (rowData)=> <Link href='/dogprofile/[name]' as={`/dogprofile/${rowData.id}`}><a>{rowData.dogName}</a></Link>
+    const nameInfo = (rowData)=> {
+        useEffect(() => {
+            handleDogInfo(rowData);
+          }, [data]);
+        return <Link href='/dogprofile/[name]' as={`/dogprofile/${rowData.dogName}`}><a>{rowData.dogName}</a></Link>
+    }
     const createTableData = (array)=>{
         setData( array.map(object=>{
             return ({
@@ -80,12 +87,42 @@ export default (props) => {
                 foodName:object.foodName,
                 foodAmount:object.foodAmount,
                 foodTime:object.foodTime,
+                issueHeader:['dogAggressive','humanAggressive','fearful','leashPulling','doesntListenWhenCalled','toyAggression','foodAggression','separationAnxiety','barking','listenSometimes','counterSurfing','lungingAtDogs','lungingAtHumans','jumping','improperHouseManners'],
+                issueDetails:[object.dogAggressive,object.humanAggressive,object.fearful,object.leashPulling,object.doesntListenWhenCalled,object.toyAggression,object.foodAggression,object.separationAnxiety,object.barking,object.listenSometimes,object.counterSurfing,object.lungingAtDogs,object.lungingAtHumans,object.jumping,object.improperHouseManners],                
+                additionalIssues: object.additionalIssues,
+                commands: object.commands,
+                toys: object.toys,
+                allegires: object.allegires,
+                medication: object.medication,
+                medicationInfo: object.medicationInfo,
+                medicalIssues: object.medicalIssues,
+                dogFlu: object.dogFlu,
+                ageFixed: object.ageFixed,
+                dateofCycle: object.dateofCycle,
+                heartwormFleaMedication: object.heartwormFleaMedication,
+                nameAndDose: object.nameAndDose,
+                extraNotes: object.extraNotes,
+                referal: object.referal,
+                ownerAddress: object.ownerAddress,
+                ownerCity: object.ownerCity,
+                ownerState: object.ownerState,
+                ownerZip: object.ownerZip,
+                emergencyContactFirstName: object.emergencyContactFirstName,
+                emergencyContactLastName: object.emergencyContactLastName,
+                emergencyContactCellPhone: object.emergencyContactCellPhone,
+                status: object.status,
+                heel: object.heel,
+                program: object.program,
+                dateofIntake: object.dateofIntake,
+                createdAt: object.createdAt,
+                updatedAt: object.updatedAt,
             });
         }));
     }
     useEffect(() => {
         axios.get('/api/dogs')
         .then(res => {
+            console.log(res.data)
             createTableData(res.data);
         })
         .catch(err => console.log('Error:',err))
@@ -147,7 +184,7 @@ export default (props) => {
         children: vetInfo
     }];
     return <>
-        <InternalLayout adminFlag='y'>
+        <InternalLayout>
             <TableTemplate header={headerData} table={data}>
             </TableTemplate>
         </InternalLayout>

@@ -13,13 +13,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "./node_modules/semantic-ui-react/dist/es/index.js");
+/* harmony import */ var _util_UserContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/UserContext */ "./components/util/UserContext.js");
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
  //later feature to implement add a user profile for each user
 //send the admin flag in the props
 //if admin flag = y
 
 function InternalLayout(props) {
+  var data = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_util_UserContext__WEBPACK_IMPORTED_MODULE_2__["default"]);
   var menuItemsAdmin = [{
     name: 'dogs',
     icon: 'address book outline',
@@ -50,7 +54,7 @@ function InternalLayout(props) {
     },
     pointing: true,
     secondary: true
-  }, props.adminFlag == 'y' ? menuItemsAdmin.map(function (item, index) {
+  }, data.user.admin ? menuItemsAdmin.map(function (item, index) {
     return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
       key: index,
       icon: item.icon,
@@ -113,6 +117,22 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     }));
   })));
 });
+
+/***/ }),
+
+/***/ "./components/util/UserContext.js":
+/*!****************************************!*\
+  !*** ./components/util/UserContext.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext());
 
 /***/ }),
 
@@ -55404,6 +55424,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _components_util_UserContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/util/UserContext */ "./components/util/UserContext.js");
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -55411,7 +55432,12 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = (function (props) {
+  var _useContext = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_components_util_UserContext__WEBPACK_IMPORTED_MODULE_5__["default"]),
+      dogdata = _useContext.dogdata,
+      handleDogInfo = _useContext.handleDogInfo;
+
   var loadingData = [{
     id: 0,
     dogName: 'Loading',
@@ -55479,9 +55505,12 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
   };
 
   var nameInfo = function nameInfo(rowData) {
+    Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+      handleDogInfo(rowData);
+    }, [data]);
     return __jsx(next_link__WEBPACK_IMPORTED_MODULE_4___default.a, {
       href: "/dogprofile/[name]",
-      as: "/dogprofile/".concat(rowData.id)
+      as: "/dogprofile/".concat(rowData.dogName)
     }, __jsx("a", null, rowData.dogName));
   };
 
@@ -55502,13 +55531,43 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
         vetPhone: object.vetPhone,
         foodName: object.foodName,
         foodAmount: object.foodAmount,
-        foodTime: object.foodTime
+        foodTime: object.foodTime,
+        issueHeader: ['dogAggressive', 'humanAggressive', 'fearful', 'leashPulling', 'doesntListenWhenCalled', 'toyAggression', 'foodAggression', 'separationAnxiety', 'barking', 'listenSometimes', 'counterSurfing', 'lungingAtDogs', 'lungingAtHumans', 'jumping', 'improperHouseManners'],
+        issueDetails: [object.dogAggressive, object.humanAggressive, object.fearful, object.leashPulling, object.doesntListenWhenCalled, object.toyAggression, object.foodAggression, object.separationAnxiety, object.barking, object.listenSometimes, object.counterSurfing, object.lungingAtDogs, object.lungingAtHumans, object.jumping, object.improperHouseManners],
+        additionalIssues: object.additionalIssues,
+        commands: object.commands,
+        toys: object.toys,
+        allegires: object.allegires,
+        medication: object.medication,
+        medicationInfo: object.medicationInfo,
+        medicalIssues: object.medicalIssues,
+        dogFlu: object.dogFlu,
+        ageFixed: object.ageFixed,
+        dateofCycle: object.dateofCycle,
+        heartwormFleaMedication: object.heartwormFleaMedication,
+        nameAndDose: object.nameAndDose,
+        extraNotes: object.extraNotes,
+        referal: object.referal,
+        ownerAddress: object.ownerAddress,
+        ownerCity: object.ownerCity,
+        ownerState: object.ownerState,
+        ownerZip: object.ownerZip,
+        emergencyContactFirstName: object.emergencyContactFirstName,
+        emergencyContactLastName: object.emergencyContactLastName,
+        emergencyContactCellPhone: object.emergencyContactCellPhone,
+        status: object.status,
+        heel: object.heel,
+        program: object.program,
+        dateofIntake: object.dateofIntake,
+        createdAt: object.createdAt,
+        updatedAt: object.updatedAt
       };
     }));
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/dogs').then(function (res) {
+      console.log(res.data);
       createTableData(res.data);
     })["catch"](function (err) {
       return console.log('Error:', err);
@@ -55563,9 +55622,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
     haschildren: true,
     children: vetInfo
   }];
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_components_InternalLayout__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    adminFlag: "y"
-  }, __jsx(_components_TableTemplate__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_components_InternalLayout__WEBPACK_IMPORTED_MODULE_1__["default"], null, __jsx(_components_TableTemplate__WEBPACK_IMPORTED_MODULE_2__["default"], {
     header: headerData,
     table: data
   })));

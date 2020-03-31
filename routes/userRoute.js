@@ -17,7 +17,7 @@ module.exports = (handle,server) => {
                 //send to profile page once authenticated
                 res.status(200).json({
                   success:true,
-                  redirectUrl: '/users',
+                  redirectUrl: '/dogs',
                   data: queryResp
               })
             }

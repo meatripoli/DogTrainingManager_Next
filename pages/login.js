@@ -1,11 +1,13 @@
 import SignInLayout from '../components/SignInLayout';
 import MyGrid from '../components/MyGrid';
 import {Form, Button} from 'semantic-ui-react';
-import { useState } from 'react';
+import {useState,useContext} from 'react';
 import axios from 'axios';
 import router from 'next/router'
+import UserContext from '../components/util/UserContext';
 
 export default (props) => {
+  const { signIn } = useContext(UserContext);
   const [message,setMessage]=useState({
     color:'grey',
     body:'Not registered yet? Contact your admin at email@example.com to create your account.'
@@ -18,7 +20,7 @@ export default (props) => {
     event.preventDefault();
     try{
       let response = await axios.post('/login',login)
-      console.log(response.data.data);
+      signIn(response.data.data.user, response.data.data.id, response.data.data.adminflag)
       //need to send the admin flag to users
       router.push({ pathname: response.data.redirectUrl, state: response.data.data})
     }
@@ -39,6 +41,7 @@ export default (props) => {
       password: ''
     });
   };
+
   const handleLoginChange = (event)=>{
     let newObj = {[event.target.name]: event.target.value};
     setLogin({...login,...newObj});

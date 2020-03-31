@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -122,37 +122,53 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
   });
 
   const handleClick = (e, titleProps) => {
-    console.log('inside Click event', titleProps);
     const newObj = {
-      activeIndex: titleProps.index,
+      activeIndex: state.activeIndex === titleProps.index ? -1 : titleProps.index,
       index: titleProps
     };
     setState(newObj);
   };
 
-  console.log(state);
   return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"], {
     fluid: true,
     exclusive: false
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Title, {
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], {
+    style: {
+      background: '#b5b5b5'
+    }
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Title, {
     index: 0,
     active: state.activeIndex === 0,
     onClick: handleClick
-  }, "Today (3/30/2020)"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Content, {
+  }, __jsx("h2", null, "Today (3/30/2020)")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Content, {
     active: state.activeIndex === 0
-  }, "Test Content 1", __jsx(_DailyTable__WEBPACK_IMPORTED_MODULE_2__["default"], null))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Title, {
+  }, __jsx(_DailyTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    dogID: props.data.id
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], {
+    style: {
+      background: '#b5b5b5'
+    }
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Title, {
     index: 1,
     active: state.activeIndex === 1,
     onClick: handleClick
-  }, "Yesterday (3/29/2020)"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Content, {
+  }, __jsx("h2", null, "Yesterday (3/29/2020)")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Content, {
     active: state.activeIndex === 1
-  }, "Test Content 2", __jsx(_DailyTable__WEBPACK_IMPORTED_MODULE_2__["default"], null))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Title, {
+  }, __jsx(_DailyTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    dogID: props.data.id
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], {
+    style: {
+      background: '#b5b5b5'
+    }
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Title, {
     index: 2,
     active: state.activeIndex === 2,
     onClick: handleClick
-  }, "3/28/2020"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Content, {
+  }, __jsx("h2", null, "3/28/2020")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Accordion"].Content, {
     active: state.activeIndex === 2
-  }, "Test Content 3", __jsx(_DailyTable__WEBPACK_IMPORTED_MODULE_2__["default"], null))));
+  }, __jsx(_DailyTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    dogID: props.data.id
+  }))));
 });
 
 /***/ }),
@@ -170,8 +186,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
 
 const level = [{
   key: '0',
@@ -191,37 +211,33 @@ const level = [{
   value: 3
 }];
 /* harmony default export */ __webpack_exports__["default"] = (props => {
-  return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
-    as: "h3"
-  }, "Pottyng"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    widths: "equal",
-    inline: true
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    grouped: true,
+  return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"], {
     style: {
-      margin: '0px 100px 0px 50px'
+      margin: '20px 20px 0px 10px'
     }
-  }, __jsx("label", null, "Pee"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, null), __jsx("label", null, "Poop"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, null)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
-    label: "Notes",
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], {
+    divided: "vertically"
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
+    as: "h3",
+    textAlign: "center"
+  }, "Health Status "), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, {
+    columns: 2
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    inline: true
+  }, __jsx("label", null, "Peed"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, null), __jsx("label", null, "Pooped"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, null)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
+    label: "Potty Notes",
     placeholder: "Notes"
-  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
-    as: "h3"
-  }, "Feeding"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    widths: "equal",
+  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     inline: true
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    grouped: true,
-    style: {
-      margin: '0px 100px 0px 50px'
-    }
   }, __jsx("label", null, "Ate"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, null)), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
-    label: "Notes",
+    label: "Feeding Notes",
     placeholder: "Notes"
-  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
-    as: "h3"
-  }, "Training"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    inline: true
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
+    as: "h3",
+    textAlign: "center"
+  }, "Training Status"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, {
+    columns: 3
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     grouped: true
   }, __jsx("label", null, "Sit"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Select, {
     fluid: true,
@@ -237,32 +253,119 @@ const level = [{
   }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
     label: "Notes",
     placeholder: "Notes"
-  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
-    inline: true
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     grouped: true
-  }, __jsx("label", null, "Down"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Field, {
-    label: "1 - Leash Pressure",
-    control: "input",
-    type: "radio",
-    name: "1"
-  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Field, {
-    label: "2 - E-Collar Pressure",
-    control: "input",
-    type: "radio",
-    name: "2"
-  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Field, {
-    label: "3 - No Pressure",
-    control: "input",
-    type: "radio",
-    name: "3"
-  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+  }, __jsx("label", null, "Down"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Select, {
+    fluid: true,
+    label: "",
+    options: level,
+    placeholder: ""
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     inline: true
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
     label: "Duration"
   }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
     label: "Distance"
-  }))));
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
+    label: "Notes",
+    placeholder: "Notes"
+  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    grouped: true
+  }, __jsx("label", null, "Place"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Select, {
+    fluid: true,
+    label: "",
+    options: level,
+    placeholder: ""
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    inline: true
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
+    label: "Duration"
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
+    label: "Distance"
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
+    label: "Notes",
+    placeholder: "Notes"
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, {
+    columns: 3
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    grouped: true
+  }, __jsx("label", null, "Heel"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Select, {
+    fluid: true,
+    label: "",
+    options: level,
+    placeholder: ""
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    inline: true
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
+    label: "Duration"
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
+    label: "Distance"
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
+    label: "Notes",
+    placeholder: "Notes"
+  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    grouped: true
+  }, __jsx("label", null, "Recall"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Select, {
+    fluid: true,
+    label: "",
+    options: level,
+    placeholder: ""
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    inline: true
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
+    label: "Duration"
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
+    label: "Distance"
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
+    label: "Notes",
+    placeholder: "Notes"
+  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    grouped: true
+  }, __jsx("label", null, "Let's Go"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Select, {
+    fluid: true,
+    label: "",
+    options: level,
+    placeholder: ""
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    inline: true
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
+    label: "Duration"
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
+    label: "Distance"
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
+    label: "Notes",
+    placeholder: "Notes"
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, {
+    columns: 2
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    grouped: true
+  }, __jsx("label", null, "Door Manners"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Select, {
+    fluid: true,
+    label: "",
+    options: level,
+    placeholder: ""
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+    inline: true
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
+    label: "Duration"
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Checkbox, {
+    label: "Distance"
+  }))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
+    label: "Notes",
+    placeholder: "Notes"
+  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Input, {
+    fluid: true,
+    label: "Location of Outing",
+    placeholder: "Lowes",
+    style: {
+      marginBottom: '45px'
+    }
+  }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].TextArea, {
+    label: "Notes",
+    placeholder: "Notes"
+  })))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Button, {
+    positive: true
+  }, "Save"));
 });
 
 /***/ }),
@@ -281,13 +384,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _util_UserContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/UserContext */ "./components/util/UserContext.js");
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
  //later feature to implement add a user profile for each user
 //send the admin flag in the props
 //if admin flag = y
 
 function InternalLayout(props) {
+  const data = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_util_UserContext__WEBPACK_IMPORTED_MODULE_2__["default"]);
   let menuItemsAdmin = [{
     name: 'dogs',
     icon: 'address book outline',
@@ -318,7 +425,7 @@ function InternalLayout(props) {
     },
     pointing: true,
     secondary: true
-  }, props.adminFlag == 'y' ? menuItemsAdmin.map((item, index) => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
+  }, data.user.admin ? menuItemsAdmin.map((item, index) => __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Menu"].Item, {
     key: index,
     icon: item.icon,
     name: item.name,
@@ -352,8 +459,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
 /* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "axios");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
 
 const programOptions = [{
   key: 'o',
@@ -386,7 +504,47 @@ const heelOptions = [{
   value: 'right'
 }];
 /* harmony default export */ __webpack_exports__["default"] = (props => {
-  return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+  const {
+    0: data,
+    1: setData
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    setData({
+      id: props.data.id,
+      heel: props.data.heel,
+      program: props.data.program,
+      dateofIntake: props.data.dateofIntake
+    });
+  }, []);
+
+  const handleInput = event => {
+    let newObj = {
+      [event.target.name]: event.target.value
+    };
+    setData(_objectSpread({}, data, {}, newObj));
+  };
+
+  const handleDropdown = (event, item) => {
+    let newObj = {
+      [item.name]: item.value
+    };
+    setData(_objectSpread({}, data, {}, newObj));
+  };
+
+  const handleClick = async event => {
+    event.preventDefault();
+    console.log('submit following info', data); ///we want to update table
+
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.put('/api/dogprofile/' + props.data.id, data).then(res => {
+      res.status === 200 ? alert("Intake Infosaved successfully") : console.log(res);
+    }).catch(err => console.log('Error:', err));
+  };
+
+  return __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"], {
+    divided: "vertically"
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, {
+    columns: 2
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
     width: 6
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Image"], {
     src: "https://www.pngkey.com/png/detail/204-2046914_diane-vulcan-shared-rhodesian-ridgeback.png",
@@ -396,44 +554,79 @@ const heelOptions = [{
     width: 10
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
     as: "h1"
-  }, "Basic Info"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Name: Bailey"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Age: 7"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Breed: Rhodesian Ridgeback Mix"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Gender: female"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Owner Contact Information: Name: Maria Tripoli Phone: 13214310659 Email: meatripoli@gmail.com"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Food Information: Name: Nature's Logic Sardine flavor Amount: 4 Time: Morning and Evening"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Fixed: yes"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Veterinarian Information: Name: Parmer Lane Pet Hospital Phone: 512-260-5443"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Allergies: (if blank) None Provided"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Medication: (if blank) None Provided")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
+  }, "Basic Info"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"], {
+    bulleted: true
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Name: ", props.data.dogName), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Age: ", props.data.dogAge), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Breed: ", props.data.dogBreed), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Gender: ", props.data.dogGender), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Owner Contact Information:", __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].List, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Name: ", `${props.data.ownerFirstName} ${props.data.ownerLastName}`), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Phone: ", props.data.ownerCellPhone), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Email: ", props.data.ownerEmail))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Food Information:", __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].List, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Name: ", props.data.foodName), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Amount: ", props.data.foodAmount), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Time: ", props.data.foodTime))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Fixed: ", props.data.fixed), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Veterinarian Information:", __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].List, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Name: ", props.data.vetName), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Phone: ", props.data.vetPhone))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Allergies: ", props.data.allegires), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "Medication: ", props.data.medication)))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, {
+    stretched: true,
+    columns: 2
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+    width: 8
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
+    as: "h3"
+  }, "Issues"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"], {
+    bulleted: true
+  }, props.data.issueDetails.map((issue, index) => {
+    issue ? __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, issueHeader[i]) : '';
+  })))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
+    width: 8
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
+    as: "h3"
+  }, "Extra Comments"), __jsx("p", null, "Extra Issues: ", props.data.additionalIssues), __jsx("p", null, "Owner Notes: ", props.data.extraNotes === '' ? props.data.extraNotes : 'None Provided')), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
+    as: "h3"
+  }, "Known Commands"), __jsx("p", null, props.data.commands)))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, {
+    stretched: true,
+    columns: 1
+  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
+    as: "h1",
+    style: {
+      marginLeft: '10px'
+    }
+  }, "Intake Info (provided by trainer)"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Group, {
     widths: "equal"
   }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Select, {
     fluid: true,
     label: "Heel",
     options: heelOptions,
     placeholder: "Left",
-    value: heelOptions[0].value
+    value: data.heel,
+    onChange: handleDropdown,
+    name: "heel"
   }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Select, {
     fluid: true,
     label: "Program",
     options: programOptions,
-    placeholder: "Program"
+    placeholder: "Program",
+    onChange: handleDropdown,
+    value: data.program,
+    name: "program"
   }), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Input, {
     fluid: true,
     label: "Intake Date",
-    name: "dateofCycle",
-    type: "date"
-  }))))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, {
-    style: {
-      marginLeft: '10px'
-    }
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
-    as: "h1"
-  }, "Training Info (provided by owner)")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, {
-    stretched: true
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
-    width: 8
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
-    as: "h3"
-  }, "Issues"), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["List"].Item, null, "None Provided")))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Column, {
-    width: 8
-  }, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
-    as: "h3"
-  }, "Extra Comments"), __jsx("p", null, "Extra Issues: She is too stinking cute for her own good"), __jsx("p", null, "Owner Notes: (if blank) None Provided")), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Segment"], null, __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Header"], {
-    as: "h3"
-  }, "Known Commands"), __jsx("p", null, "All of them"))))));
+    name: "dateofIntake",
+    type: "date",
+    value: data.dateofIntake,
+    onChange: handleInput
+  })), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Form"].Button, {
+    positive: true,
+    onClick: handleClick
+  }, "Save")))), __jsx(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__["Grid"].Row, null));
 });
+
+/***/ }),
+
+/***/ "./components/util/UserContext.js":
+/*!****************************************!*\
+  !*** ./components/util/UserContext.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext());
 
 /***/ }),
 
@@ -453,23 +646,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_CollapseAccordion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/CollapseAccordion */ "./components/CollapseAccordion.js");
 /* harmony import */ var _components_Profile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Profile */ "./components/Profile.js");
+/* harmony import */ var _components_util_UserContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/util/UserContext */ "./components/util/UserContext.js");
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = (props => {
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
-  console.log(router.query.name);
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_components_InternalLayout__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    adminFlag: "y"
-  }, __jsx(_components_Profile__WEBPACK_IMPORTED_MODULE_4__["default"], null), __jsx(_components_CollapseAccordion__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  const {
+    dogdata
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useContext"])(_components_util_UserContext__WEBPACK_IMPORTED_MODULE_5__["default"]);
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_components_InternalLayout__WEBPACK_IMPORTED_MODULE_1__["default"], null, __jsx(_components_Profile__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    data: dogdata
+  }), __jsx(_components_CollapseAccordion__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    data: dogdata
+  })));
 });
 
 /***/ }),
 
-/***/ 7:
+/***/ 4:
 /*!******************************************!*\
   !*** multi ./pages/dogprofile/[name].js ***!
   \******************************************/
@@ -478,6 +678,17 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 module.exports = __webpack_require__(/*! /Users/meatripoli/ClassWork/FinalProject/pages/dogprofile/[name].js */"./pages/dogprofile/[name].js");
 
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("axios");
 
 /***/ }),
 

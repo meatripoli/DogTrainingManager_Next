@@ -77,4 +77,21 @@ module.exports = (handle,server) => {
             res.json(queryResp);
         });
     });
+    server.put('/api/dogprofile/:name',(req,res)=>{
+        console.log('server side put',req.params.name)
+        console.log('server side put',req.body)
+        db.trainingForm
+        .update({
+            heel: req.body.heel,
+            program: req.body.program,
+            dateofIntake: req.body.dateofIntake
+        }, 
+        {
+            where: {
+                id: req.body.id
+            }   
+        }).then((queryResp)=>{
+            res.json(queryResp);
+        });
+    });
 };

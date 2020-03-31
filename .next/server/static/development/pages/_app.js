@@ -93,6 +93,22 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/util/UserContext.js":
+/*!****************************************!*\
+  !*** ./components/util/UserContext.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = (react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext());
+
+/***/ }),
+
 /***/ "./node_modules/semantic-ui-css/semantic.min.css":
 /*!*******************************************************!*\
   !*** ./node_modules/semantic-ui-css/semantic.min.css ***!
@@ -120,10 +136,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var semantic_ui_css_semantic_min_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_css_semantic_min_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _public_css_layoutcomponent_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../public/css/layoutcomponent.css */ "./public/css/layoutcomponent.css");
 /* harmony import */ var _public_css_layoutcomponent_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_public_css_layoutcomponent_css__WEBPACK_IMPORTED_MODULE_2__);
-var _jsxFileName = "/Users/meatripoli/ClassWork/FinalProject/pages/_app.js";
+/* harmony import */ var _components_util_UserContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/util/UserContext */ "./components/util/UserContext.js");
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
 
@@ -132,14 +147,50 @@ function MyApp({
   Component,
   pageProps
 }) {
-  return __jsx(Component, _extends({}, pageProps, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 6
-    },
-    __self: this
-  }));
+  const {
+    0: data,
+    1: setData
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    user: null,
+    id: null,
+    admin: null
+  });
+  const {
+    0: dogInfo,
+    1: setDogInfo
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({});
+
+  const signIn = (user, id, admin) => {
+    setData({
+      user: user,
+      id: id,
+      admin: admin
+    });
+  };
+
+  const signOut = () => {
+    setData({
+      user: null,
+      id: null,
+      admin: null
+    });
+  };
+
+  const handleDogInfo = obj => {
+    setDogInfo(obj);
+  };
+
+  return __jsx(_components_util_UserContext__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
+    value: {
+      user: data,
+      dogdata: dogInfo,
+      signIn: signIn,
+      signOut: signOut,
+      handleDogInfo: handleDogInfo
+    }
+  }, __jsx(Component, pageProps));
 }
+;
 
 /***/ }),
 

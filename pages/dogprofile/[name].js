@@ -2,14 +2,17 @@ import InternalLayout from '../../components/InternalLayout';
 import {useRouter} from 'next/router';
 import CollapseAccodion from '../../components/CollapseAccordion';
 import Profile from '../../components/Profile';
+import UserContext from '../../components/util/UserContext';
+import {useContext} from 'react';
 
 export default (props) => {
-    const router = useRouter();
-    console.log(router.query.name)
+    const router = useRouter(); 
+    const {dogdata} = useContext(UserContext);    
+
     return <>
-        <InternalLayout adminFlag='y'>
-            <Profile />
-            <CollapseAccodion />
+        <InternalLayout>
+            <Profile data={dogdata}/>
+            <CollapseAccodion data={dogdata}/>
         </InternalLayout>
     </>
 }
