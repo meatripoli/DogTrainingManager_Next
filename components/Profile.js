@@ -20,11 +20,19 @@ export default (props) => {
             id: props.data.id,
             heel: props.data.heel,
             program: props.data.program,
-            dateofIntake: props.data.dateofIntake,
+            dateofIntake: myDateFormat(props.data.dateofIntake),
         })
-    },[])
+    },[]);
+    const myDateFormat=(date)=>{
+        const convertDate= typeof date ==='string'? 
+            `${date.substring(0,4)}-${date.substring(5,7)}-${date.substring(8,10)}`: null;
+        return convertDate;
+    }
     const handleInput = (event)=>{
-        let newObj = {[event.target.name]:event.target.value};
+        let newObj = 
+        [event.target.name] === 'dateofIntake'?
+            {[event.target.name]:myDateFormat(event.target.value)}:
+            {[event.target.name]:event.target.value};
         setData({...data,...newObj});
    }
     const handleDropdown = (event,item)=>{
