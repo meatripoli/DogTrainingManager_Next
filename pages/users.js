@@ -1,22 +1,25 @@
 import InternalLayout from '../components/InternalLayout';
-import Table from '../components/UsersTable';
-import ModalLayout from '../components/ModalLayout';
+import UserContext from '../components/util/UserContext';
+import MyNewUserModal from '../components/MyNewUserModal';
+import MyRemoveUserModal from '../components/MyRemoveUserModal';
 
-//import { useRouter } from 'next/router';
+import {useState,useContext} from 'react';
 
-export default (props) => {
-    console.log('inside /users', props)
-    ///figure out how to send the admin flag from the login page
-    //let router = useRouter();
-    return (
-    <InternalLayout adminFlag='y'>
-        <ModalLayout buttonColor='green'
+export default () => {
+    const data = useContext(UserContext);
+    const [who,setWho] = useState(null)
+    // console.log('before', who)
+    who?who:setWho(data.user)
+    // console.log('after',who)
+    //    
+    return <InternalLayout>    
+        <MyNewUserModal
+            buttonColor='green'
             buttonLocation='right' 
-            buttonName='New User' 
+            buttonName='New User'
             icon='plus' 
             title='Add a new user'
-        >
-        </ModalLayout>
-        <Table></Table>
-    </InternalLayout>);
-}
+            flag='newUser'/>
+        <MyRemoveUserModal/>
+    </InternalLayout>;
+};

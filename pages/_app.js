@@ -11,6 +11,7 @@ export default function MyApp({ Component, pageProps }) {
     admin: null,
   });
   const [dogInfo,setDogInfo] = useState({});
+  const [modalstate,setModalstate] = useState(false);
   const signIn = (user, id, admin) => {
     setData({
       user: user,
@@ -25,13 +26,18 @@ export default function MyApp({ Component, pageProps }) {
       id: null,
       admin: null,
     })
+    setDogInfo({})
   };
   const handleDogInfo = (obj) => {
     setDogInfo(obj)
   }
+  const handleModalstate = (flag) => {
+    let newObj = {[flag]: modalstate[flag]?false:true};
+    setModalstate({...modalstate,...newObj});
+  }
 
   return (
-    <UserContext.Provider value={{user:data, dogdata: dogInfo, signIn: signIn, signOut:signOut, handleDogInfo: handleDogInfo}}>
+    <UserContext.Provider value={{user:data, dogdata: dogInfo, modalstate:modalstate, signIn: signIn, signOut:signOut, handleDogInfo: handleDogInfo, handleModalstate:handleModalstate}}>
       <Component {...pageProps} />
     </UserContext.Provider>
   );

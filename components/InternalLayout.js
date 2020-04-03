@@ -1,9 +1,10 @@
 import {Menu, Segment, Button, Icon} from 'semantic-ui-react';
 import UserContext from './util/UserContext';
-import {useContext} from 'react';
-//later feature to implement add a user profile for each user
-//send the admin flag in the props
-//if admin flag = y
+import {useState,useContext, useEffect} from 'react';
+
+/*props needed
+children
+*/
 export default function InternalLayout(props) {
     const data = useContext(UserContext);
     let menuItemsAdmin = [
@@ -17,13 +18,16 @@ export default function InternalLayout(props) {
         {name:'archive',icon:'archive',href:'/archive'},
         //{name:'user profile',icon:'user circle',href:''}
     ]
+    const handleLogout= ()=>{
+        data.signOut();
+    }
     return (<>
         <Menu  style={{background: 'linear-gradient(45deg, #019474 30%, #b5b5b5 90%)'}} pointing secondary>
             {data.user.admin? 
                 menuItemsAdmin.map((item,index)=><Menu.Item key={index} icon={item.icon} name={item.name} href={item.href}/>)
                 :menuItems.map((item,index)=><Menu.Item key={index} icon={item.icon} name={item.name} href={item.href}/>)}
             <Menu.Menu position='right'>
-                <Menu.Item  icon="sign-out alternate" name='logout' href="/"/>
+                <Menu.Item  icon="sign-out alternate" name='logout' onClick={handleLogout} href="/"/>
             </Menu.Menu>
         </Menu>
         <Segment>{props.children}</Segment>    

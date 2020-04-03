@@ -32,11 +32,9 @@ module.exports = (handle,server) => {
               })
             }
             else{
-                console.log('incorrect password')
                 res.status(401)
             };
         }).catch((error) => {
-            console.log('incorrect user')
             res.status(401);
             res.json({error:error, stackError:error.stack});
         });
@@ -57,21 +55,26 @@ module.exports = (handle,server) => {
             res.status(200);
             res.json(queryResp);
         }).catch((error) => {
-            res.status(500);
+            error.name === 'SequelizeUniqueConstraintError'? res.status(409):res.status(500);
             res.json({error:error, stackError:error.stack});
         });
     });
 
     server.delete('/api/users',(req,res)=>{
-        db.user.destroy({
-            where: {
-                id: parseInt(req.body.id)
-            }
-         }).then(function(rowDeleted){ // rowDeleted will return number of rows deleted
-           if(rowDeleted === 1){
-                res.status(200);
-                res.json(rowDeleted);
-            }
-        })
+        if(req.body.adminflag==='no'){
+            db.user.destroy({
+                where: {
+                    id: parseInt(req.body.id)
+                }
+            }).then(function(rowDeleted){ // rowDeleted will return number of rows deleted
+            if(rowDeleted === 1){
+                    res.status(200);
+                    res.json(rowDeleted);
+                }
+            })
+        }
+        else{
+            res.json({status: 409});
+        };
     });
 };

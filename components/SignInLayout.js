@@ -1,5 +1,8 @@
 import {Menu} from 'semantic-ui-react';
- 
+
+/*props needed
+children
+*/
 export default function SignInLayout(props) {
     return (<>
         <header className='loginMenu'>
