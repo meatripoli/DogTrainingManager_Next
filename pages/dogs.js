@@ -184,7 +184,7 @@ export default (props) => {
         children: vetInfo
     }];
     return <>
-        <InternalLayout>
+        <InternalLayout >
             <TableTemplate header={headerData} table={data}>
             </TableTemplate>
         </InternalLayout>

@@ -1,5 +1,17 @@
 import { Table} from 'semantic-ui-react';
 
+/*props needed
+header
+    header object should have the following for each column
+    {
+        tableHeaderName:'',---match SQL table column
+        name: '', ---column name on the page
+        clickFunction: '', --if there is a button
+        haschildren: false, --if you want to add more then just text change to true and add a function below
+        children: ''/component( ei-mymodal)
+    }
+table (data to fill table)
+*/
 export default (props)=>{
     return(
         <Table basic='very' striped sortable celled >
