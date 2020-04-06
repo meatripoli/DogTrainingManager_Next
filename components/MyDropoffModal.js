@@ -3,12 +3,11 @@ import TableTemplate from '../components/TableTemplate';
 import UserContext from '../components/util/UserContext';
 
 import {Message, Form, Button, Icon} from 'semantic-ui-react';
-import router from 'next/router'
 import Link from 'next/link'; 
 import {useState, useEffect,useContext} from 'react';
 import axios from 'axios';
 
-export default () => {
+export default (props) => {
     const {dogInfo,handleDogInfo} = useContext(UserContext);
     ///setting up table data variable
     const loadingData =[{
@@ -24,7 +23,7 @@ export default () => {
     })
     //when first loading pull all the dogs from database
     useEffect(() => {
-        axios.get('/api/dogs')
+        axios.get(props.path)
         .then(res => {
             createTableData(res.data);
         })
@@ -136,18 +135,20 @@ export default () => {
     const statusInfo = (rowData)=>{ 
         let newObj = {
             color:'gray',
-            text:'Inactive - '
+            title:'Inactive',
+            text: null
         };
         if (rowData.status==='active') {
             newObj = {
                 color: rowData.program?'green':'red',
-                text: 'Active - '
+                title: 'Active - ',
+                text: rowData.program || 'new'
             }
         }
         return <>      
         <p style={{color:newObj.color}}>
-            <span style={{fontWeight:"bold"}}>{newObj.text}</span>
-            {rowData.program || 'new'}
+            <span style={{fontWeight:"bold"}}>{newObj.title}</span>
+            {newObj.text || ''}
         </p>
     </>}
     //formats the date for the modal input date field
