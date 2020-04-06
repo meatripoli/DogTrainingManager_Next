@@ -5,13 +5,15 @@ module.exports = (handle,server) => {
     server.use(bodyParser.urlencoded({ extended: false }))
     server.use(bodyParser.json());
     server.post('/login',(req,res)=>{
+        console.log('inside post /login',req.body)  
         //check bcrypt
         //checkdatabase to see if user and password match
         db.user.findOne({
             where: {
                 user: req.body.user
             }
-        }).then((queryResp)=>{           
+        }).then((queryResp)=>{      
+            console.log('query response:',queryResp)     
             if(queryResp.password === req.body.password && queryResp.adminflag){
                 console.log('admin')
                 //send to profile page once authenticated
@@ -32,7 +34,12 @@ module.exports = (handle,server) => {
               })
             }
             else{
-                res.status(401)
+                res.status(401).json({
+                    success:false,
+                    redirectUrl: '/',
+                    message: 'password incorrect',
+                    data: ''
+                })
             };
         }).catch((error) => {
             res.status(401);

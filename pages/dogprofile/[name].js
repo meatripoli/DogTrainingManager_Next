@@ -6,13 +6,14 @@ import UserContext from '../../components/util/UserContext';
 import {useContext} from 'react';
 
 export default (props) => {
+    console.log(props)
     const router = useRouter(); 
-    const {dogdata} = useContext(UserContext);    
-
+    const {dogInfo} = useContext(UserContext);    
+    console.log('inside dogprofile page',dogInfo)
     return <>
         <InternalLayout>
-            <Profile data={dogdata}/>
-            <CollapseAccodion data={dogdata}/>
+            {/* <Profile data={dogInfo}/>
+            <CollapseAccodion data={dogInfo}/> */}
         </InternalLayout>
     </>
 }

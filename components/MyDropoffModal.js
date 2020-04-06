@@ -2,8 +2,9 @@ import MyModal from '../components/MyModal';
 import TableTemplate from '../components/TableTemplate';
 import UserContext from '../components/util/UserContext';
 
-import {Message, Form} from 'semantic-ui-react';
-import Link from 'next/link'
+import {Message, Form, Button, Icon} from 'semantic-ui-react';
+import router from 'next/router'
+import Link from 'next/link'; 
 import {useState, useEffect,useContext} from 'react';
 import axios from 'axios';
 
@@ -15,6 +16,12 @@ export default () => {
         dogName:'Loading',
     }];
     const [data,setData] = useState(loadingData);
+    const [error,setError] = useState({
+        status: null,
+        title: null,
+        text: null,
+        hidden: true
+    })
     //when first loading pull all the dogs from database
     useEffect(() => {
         axios.get('/api/dogs')
@@ -126,6 +133,23 @@ export default () => {
             {rowData.foodTime}
         </p>
     </>}
+    const statusInfo = (rowData)=>{ 
+        let newObj = {
+            color:'gray',
+            text:'Inactive - '
+        };
+        if (rowData.status==='active') {
+            newObj = {
+                color: rowData.program?'green':'red',
+                text: 'Active - '
+            }
+        }
+        return <>      
+        <p style={{color:newObj.color}}>
+            <span style={{fontWeight:"bold"}}>{newObj.text}</span>
+            {rowData.program || 'new'}
+        </p>
+    </>}
     //formats the date for the modal input date field
     const myDateFormat=(date)=>{
         const convertDate= typeof date ==='string'? 
@@ -135,70 +159,31 @@ export default () => {
     //Dropoff Modal dropdown, date input and button functions
     const handleButton = async (event,rowdata)=>{
         let response;
-        
-        console.log('rowdata',rowdata)
-        console.log('dogInfo',dogInfo)
-        
-        let newObj = {
-            id:rowdata.id,
-            heel:dogInfo.heel || rowdata.heel,
-            program:dogInfo.program || rowdata.program,
-            dateofIntake:dogInfo.dateofIntake || rowdata.dateofIntake
-        };
-        console.log('newObj',newObj)
+        handleDogInfo({...rowdata,...dogInfo});
         event.preventDefault();
-        // try{
-        //     response = await axios.put('/api/dogprofile/'+rowdata.id, rowdata)
-        //     if(response.status===200){
-        //         console.log("Intake Infosaved successfully")
-        //         //window.location.reload(false);
-        //     };
-        // }
-        // catch(e){
-        //     console.log('Error:',err)
-        //     //setTimeout(function(){ window.location.reload(false); }, 3000);
-        // }
-        //changes state of modal from open to closed
-        // try{
-        //     response = await axios.delete('/api/users',{data:rowdata});
-        //     if(response.data.status===409){
-        //         setTimeout(function(){ window.location.reload(false); }, 3000);
-        //         setRemoveUser({
-        //             username: '',
-        //             admin:false,
-        //             id:0,
-        //             error: {
-        //                 status: true,
-        //                 title: 'Error deleting an admin user!',
-        //                 text: 'You do not have permissions'
-        //             }
-        //         });
-        //     }
-        //     else if(response.status===200){
-        //         window.location.reload(false);
-        //         setRemoveUser({
-        //             username: '',
-        //             admin:false,
-        //             id:0,
-        //             error: {
-        //                 status: true,
-        //                 title: '',
-        //                 text: 'Are you sure you want to delete this account?'
-        //             }
-        //         })
-        //     };
-        // }
-        // catch(e){
-        //     setTimeout(function(){ window.location.reload(false); }, 3000);
-        //     newObj = {
-        //         error:{
-        //             status: true,
-        //             title: 'ERROR',
-        //             text: 'Issue deleting user'
-        //         }
-        //     };
-        //     setRemoveUser({...removeUser,...newObj}); 
-        // };
+        try{
+            response = await axios.put('/api/dogprofile/'+dogInfo.id, dogInfo)
+            if(response.status===200){
+                console.log("Dropoff Info saved successfully")
+                setError({
+                    color: 'green',
+                    title: 'Success!',
+                    text: "Dropoff information saved successfully",
+                    hidden: false
+                })
+                setTimeout(function(){ window.location.reload(false); }, 3000);
+            };
+        }
+        catch(e){
+            console.log('Error:',err)
+            setError({
+                color: 'red',
+                title: 'Failed!',
+                text: "Dropoff information not saved",
+                hidden: false
+            })
+            setTimeout(function(){ window.location.reload(false); }, 3000);
+        }
     };
     const handleInput = (event)=>{
         let newObj = 
@@ -211,9 +196,8 @@ export default () => {
         let newObj = {[item.name]: item.value};
         handleDogInfo({...dogInfo,...newObj});
     }
-
     //Dropoff Modal
-    const mymodal = (rowdata,props) => {
+    const dropoffModal = (rowdata) => {
         
         return<MyModal
             buttonLocation='right' 
@@ -253,20 +237,26 @@ export default () => {
                         />
                     </Form.Group>                    
                     <Message
-                        error={'gggg'}
-                        header={'removeUser.error.title'}
-                        content={'removeUser.error.text'}
+                        hidden={error.hidden}
+                        color={error.color}
+                        header={error.title}
+                        content={error.text}
                     />
                 </Form>
             </MyModal>
     };
+    //Profile functionality
+    const handleProfileButton = (event,rowData)=>{
+        handleDogInfo(rowData);
+    }
+    const profileButton = (rowdata)=><Link href='/dogprofile/[name]' as={`/dogprofile/${rowdata.dogName}`}><a onClick={(e)=>handleProfileButton(e,rowdata)}>{rowdata.dogName}</a></Link>
     //header array for table creation
     let headerData = [{
         tableHeaderName:'dogName',
         name: 'Dog Name',
         clickFunction: '',
-        haschildren: false,
-        children: ''
+        haschildren: true,
+        children: profileButton
     },
     {
         tableHeaderName:'dogAge',
@@ -318,18 +308,18 @@ export default () => {
         children: vetInfo
     },
     {
-        tableHeaderName:'profile',
-        name: 'Profile',
+        tableHeaderName:'status',
+        name: 'Status',
         clickFunction: '',
         haschildren: true,
-        children: mymodal
+        children: statusInfo
     },
     {
         tableHeaderName:'dropoff',
         name: 'Dropoff Form',
         clickFunction: '',
         haschildren: true,
-        children: mymodal
+        children: dropoffModal
     }];
     
     return <TableTemplate header={headerData} table={data} />;

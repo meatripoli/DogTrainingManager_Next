@@ -68,7 +68,9 @@ module.exports = (handle,server) => {
     })
     server.get('/api/form',(req,res)=>{
         db.trainingForm
-        .findAll().then((queryResp) => {
+        .findAll({where:{
+            status: 'inactive'
+        }}).then((queryResp) => {
             res.status(200);
             res.json(queryResp);
         }).catch((error) => {
