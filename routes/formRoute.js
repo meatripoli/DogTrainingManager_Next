@@ -108,7 +108,11 @@ module.exports = (handle,server) => {
             }   
         }).then((queryResp) => {
             res.status(200);
-            res.json(queryResp);
+            res.json({
+                success:true,
+                message: 'Info updated',
+                data: queryResp
+            });
         }).catch((error) => {
             console.log(error)
             res.status(500);
@@ -158,7 +162,11 @@ module.exports = (handle,server) => {
             outingNotes:req.body.outingNotes, 
         }).then((queryResp) => {
             res.status(200);
-            res.json(queryResp);
+            res.json({
+                success:true,
+                message: 'Info inserted',
+                data: queryResp
+            });
         }).catch((error) => {
             console.log(error)
             res.status(500);
