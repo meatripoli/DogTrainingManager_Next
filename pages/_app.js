@@ -5,19 +5,21 @@ import {useState,createContext} from 'react';
 import UserContext from '../components/util/UserContext';
 
 export default function MyApp({ Component, pageProps }) {
+  //this value is sent between the login page and the internal pages
   const [data,setData] = useState({
     user: null,
     id: null,
     admin: null,
   });
+  //used in the dogs and archive pages to send individual dog info to the dog profile page
   const [dogInfo,setDogInfo] = useState({});
-  const [modalstate,setModalstate] = useState(false);
+  
   const signIn = (user, id, admin) => {
     setData({
       user: user,
       id: id,
       admin: admin,
-    })
+    });
   };
 
   const signOut = () => {
@@ -25,19 +27,15 @@ export default function MyApp({ Component, pageProps }) {
       user: null,
       id: null,
       admin: null,
-    })
-    setDogInfo({})
+    });
+    handleDogInfo({});
   };
   const handleDogInfo = (obj) => {
-    setDogInfo(obj)
-  }
-  const handleModalstate = (flag) => {
-    let newObj = {[flag]: modalstate[flag]?false:true};
-    setModalstate({...modalstate,...newObj});
+    setDogInfo(obj);
   }
 
   return (
-    <UserContext.Provider value={{user:data, dogdata: dogInfo, modalstate:modalstate, signIn: signIn, signOut:signOut, handleDogInfo: handleDogInfo, handleModalstate:handleModalstate}}>
+    <UserContext.Provider value={{user:data, dogInfo: dogInfo, signIn: signIn, signOut:signOut, handleDogInfo: handleDogInfo}}>
       <Component {...pageProps} />
     </UserContext.Provider>
   );

@@ -144,7 +144,7 @@ export default () => {
         await axios.post('/form',form)
         ///this clears object
         setForm(initialState);
-        refreshPage();
+        window.location.reload(false);
     };
 
     return(

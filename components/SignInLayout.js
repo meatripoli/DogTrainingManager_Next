@@ -1,4 +1,4 @@
-import {Menu} from 'semantic-ui-react';
+import {Menu,Container} from 'semantic-ui-react';
 
 /*props needed
 children
@@ -14,5 +14,6 @@ export default function SignInLayout(props) {
             </Menu>
         </header>
         {props.children}
+        
     </>)
 }

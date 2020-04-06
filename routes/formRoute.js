@@ -57,24 +57,39 @@ module.exports = (handle,server) => {
             emergencyContactFirstName: req.body.emergencyContactFirstName,
             emergencyContactLastName: req.body.emergencyContactLastName,
             emergencyContactCellPhone: req.body.emergencyContactCellPhone
-        }).then((res)=>{
-            console.log(res)
-        }).catch((err)=>{
-            console.log(err)
-        })    
+        }).then((queryResp) => {
+            res.status(200);
+            res.json(queryResp);
+        }).catch((error) => {
+            console.log(error)
+            res.status(500);
+            res.json({error:error, stackError:error.stack});
+        });   
     })
     server.get('/api/form',(req,res)=>{
         db.trainingForm
-        .findAll().then((queryResp)=>{
+        .findAll({where:{
+            status: 'inactive'
+        }}).then((queryResp) => {
+            res.status(200);
             res.json(queryResp);
+        }).catch((error) => {
+            console.log(error)
+            res.status(500);
+            res.json({error:error, stackError:error.stack});
         });
     });
     server.get('/api/dogs',(req,res)=>{
         db.trainingForm
         .findAll({where:{
             status: 'active'
-        }}).then((queryResp)=>{
+        }}).then((queryResp) => {
+            res.status(200);
             res.json(queryResp);
+        }).catch((error) => {
+            console.log(error)
+            res.status(500);
+            res.json({error:error, stackError:error.stack});
         });
     });
     ///this route needs to change and come from the /dogs page
@@ -91,8 +106,13 @@ module.exports = (handle,server) => {
             where: {
                 id: req.body.id
             }   
-        }).then((queryResp)=>{
+        }).then((queryResp) => {
+            res.status(200);
             res.json(queryResp);
+        }).catch((error) => {
+            console.log(error)
+            res.status(500);
+            res.json({error:error, stackError:error.stack});
         });
     });
 

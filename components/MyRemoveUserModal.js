@@ -30,7 +30,7 @@ export default () => {
         error: {
             status: true,
             title: '',
-            text: 'Are you sure you want to delete account?'
+            text: 'Are you sure you want to delete this account?'
         }
     });
     
@@ -64,7 +64,7 @@ export default () => {
                     error: {
                         status: true,
                         title: '',
-                        text: 'Are you sure you want to delete account?'
+                        text: 'Are you sure you want to delete this account?'
                     }
                 })
             };
@@ -99,7 +99,7 @@ export default () => {
                 />
             </MyModal></>
     };
-    
+
     let headerData = [{
         tableHeaderName:'user',
         name: 'Username',

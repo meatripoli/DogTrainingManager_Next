@@ -25,7 +25,6 @@ export default (props) => {
       router.push({ pathname: response.data.redirectUrl, state: response.data.data})
     }
     catch(e){
-      console.log(e)
       if(e.response.status===401){
         let newObj = {body: 'Incorrect user or password',color:'red'};
         setMessage({...message,...newObj})
