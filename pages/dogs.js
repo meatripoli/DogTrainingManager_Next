@@ -5,11 +5,10 @@ import MyDropoffModal from '../components/MyDropoffModal';
 import {useState,useContext} from 'react';
 
 export default () => {
-    const data = useContext(UserContext);
-    const [who,setWho] = useState(null)
-    // console.log('before', who)
-    who?who:setWho(data.user)
-    // console.log('after',who)
+    // const { user,signIn } = useContext(UserContext);
+    // console.log(user)
+    // const [who,setWho] = useState(user)
+    // console.log(who)
     //    
     return <InternalLayout>    
         <MyDropoffModal path={'/api/dogs'}/>

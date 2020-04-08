@@ -6,7 +6,7 @@ import UserContext from '../components/util/UserContext';
 
 export default function MyApp({ Component, pageProps }) {
   //this value is sent between the login page and the internal pages
-  const [data,setData] = useState({
+  const [login,setLogin] = useState({
     user: null,
     id: null,
     admin: null,
@@ -15,7 +15,7 @@ export default function MyApp({ Component, pageProps }) {
   const [dogInfo,setDogInfo] = useState({});
   
   const signIn = (user, id, admin) => {
-    setData({
+    setLogin({
       user: user,
       id: id,
       admin: admin,
@@ -23,7 +23,7 @@ export default function MyApp({ Component, pageProps }) {
   };
 
   const signOut = () => {
-    setData({
+    setLogin({
       user: null,
       id: null,
       admin: null,
@@ -35,7 +35,7 @@ export default function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <UserContext.Provider value={{user:data, dogInfo: dogInfo, signIn: signIn, signOut:signOut, handleDogInfo: handleDogInfo}}>
+    <UserContext.Provider value={{user:login, dogInfo: dogInfo, signIn: signIn, signOut:signOut, handleDogInfo: handleDogInfo}}>
       <Component {...pageProps} />
     </UserContext.Provider>
   );
