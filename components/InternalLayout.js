@@ -10,13 +10,13 @@ export default function InternalLayout(props) {
     const {user,signIn,signOut} = useContext(UserContext);
     const [who,setWho] = useState(user);
     let menuItemsAdmin = [
-        {name:'dogs',icon:'address book outline',href:'/dogs'},
+        {name:'dogs',icon:'paw',href:'/dogs'},
         {name:'archive',icon:'archive',href:'/archive'},
         {name:'users',icon:'users',href:'/users'},
         //{name:'user profile',icon:'user circle',href:''}
     ];
     let menuItems = [
-        {name:'dogs',icon:'address book outline',href:'/dogs'},
+        {name:'dogs',icon:'paw',href:'/dogs'},
         {name:'archive',icon:'archive',href:'/archive'},
         //{name:'user profile',icon:'user circle',href:''}
     ];
