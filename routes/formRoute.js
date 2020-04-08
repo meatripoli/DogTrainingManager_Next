@@ -4,8 +4,8 @@ var db = require("../models");
 module.exports = (handle,server) => {
     server.use(bodyParser.urlencoded({ extended: false }))
     server.use(bodyParser.json());
+    //insert data from the customer form
     server.post('/form',(req,res)=>{
-        //create new form entry in database
         db.trainingForm.create({
             dogName: req.body.dogName,
             dogAge: req.body.dogAge,
@@ -66,6 +66,7 @@ module.exports = (handle,server) => {
             res.json({error:error, stackError:error.stack});
         });   
     })
+    //data for the archive page
     server.get('/api/form',(req,res)=>{
         db.trainingForm
         .findAll({where:{
@@ -79,6 +80,7 @@ module.exports = (handle,server) => {
             res.json({error:error, stackError:error.stack});
         });
     });
+    //data for the dogs page
     server.get('/api/dogs',(req,res)=>{
         db.trainingForm
         .findAll({where:{
@@ -92,12 +94,13 @@ module.exports = (handle,server) => {
             res.json({error:error, stackError:error.stack});
         });
     });
-    ///this route needs to change and come from the /dogs page
-    server.put('/api/dogprofile/:name',(req,res)=>{
+    //route for the dropoff form in the dogs and archive page
+    server.put('/api/dropoff/:name',(req,res)=>{
         console.log('server side put',req.params.name)
         console.log('server side put',req.body)
         db.trainingForm
         .update({
+            status: req.body.program==='gohome'?'inactive':'active',
             heel: req.body.heel,
             program: req.body.program,
             dateofIntake: req.body.dateofIntake
@@ -119,7 +122,7 @@ module.exports = (handle,server) => {
             res.json({error:error, stackError:error.stack});
         });
     });
-
+    //daily training notes inserted here
     server.post('/api/dogprofile/:name',(req,res)=>{
         console.log('server side post',req.params.name)
         console.log('server side post',req.body)

@@ -160,10 +160,15 @@ export default (props) => {
     //Dropoff Modal dropdown, date input and button functions
     const handleButton = async (event,rowdata)=>{
         let response;
-        handleDogInfo({...rowdata,...dogInfo});
+        let newObj = {
+            id: dogInfo.id||rowdata.id,
+            heel: dogInfo.heel||rowdata.heel,
+            program: dogInfo.program||rowdata.program,
+            dateofIntake: dogInfo.dateofIntake||rowdata.dateofIntake
+        }
         event.preventDefault();
         try{
-            response = await axios.put('/api/dogprofile/'+dogInfo.id, dogInfo)
+            response = await axios.put('/api/dropoff/'+newObj.id, newObj)
             if(response.status===200){
                 console.log("Dropoff Info saved successfully")
                 setError({
