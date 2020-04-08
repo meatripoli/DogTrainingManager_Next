@@ -22,7 +22,7 @@ export default (props) => {
       let response = await axios.post('/login',login)
       signIn(response.data.data.user, response.data.data.id, response.data.data.adminflag)
       //need to send the admin flag to users
-      router.push({ pathname: response.data.redirectUrl, state: response.data.data})
+      router.push({ pathname: response.data.redirectUrl})
     }
     catch(e){
       if(e.response.status===401){
