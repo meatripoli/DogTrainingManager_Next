@@ -3,6 +3,7 @@ import DailyTable from './DailyTable';
 import {useEffect,useContext,useState} from 'react';
 import axios from 'axios';
 import UserContext from './util/UserContext';
+import {DateTime} from 'luxon';
 
 //offset is based on GMT/UTC you can look up number by navigating to https://greenwichmeantime.com/time-zone/definition/
 const calcTime = (offset,days) => {
@@ -38,10 +39,7 @@ export default (props) => {
         activeIndex: 0,
         index: {},
     });
-    const today = calcTime(-5).split(',')[0]
-    console.log(today)
-    console.log(moment().format("MMM Do YY"))
-
+    const today = DateTime.local()
     const handleClick = (e,titleProps) => {
         const newObj = { 
             activeIndex: state.activeIndex === titleProps.index ? -1 : titleProps.index ,
@@ -49,20 +47,44 @@ export default (props) => {
         }
         setState(newObj);
     };
-
+    const createSegment = (index,note)=>{
+        const today = DateTime.local()
+        const nottoday = today.minus({days: index}).toLocaleString(DateTime.DATE_SHORT)
+        const noteDate = note.createdAt || 'dumb'
+        console.log(nottoday,noteDate)
+        // return (
+        // <Segment style={{background:'#b5b5b5'}}>
+        //     <Accordion.Title index={index} active={state.activeIndex === index} onClick={handleClick}>
+        //         <h2>{}</h2>
+        //     </Accordion.Title>
+        //     <Accordion.Content active={state.activeIndex === index}>
+        //         <DailyTable data={note}/>
+        //     </Accordion.Content>
+        // </Segment> )
+    }
+    createSegment(0,dailyNotes[0])
     return (
         <Accordion 
         fluid 
         exclusive={false}>
-            {dailyNotes.length<2?
+            {dailyNotes.length===0?
             <Segment style={{background:'#b5b5b5'}}>
                 <Accordion.Title index={0} active={state.activeIndex === 0} onClick={handleClick}>
-                    <h2>Today {today}</h2>
+                    <h2>{today.minus({days: 0}).toLocaleString(DateTime.DATE_SHORT)}</h2>
                 </Accordion.Title>
                 <Accordion.Content active={state.activeIndex === 0}>
-                    <DailyTable data={dailyNotes[0] || null} />
+                    <DailyTable />
                 </Accordion.Content>
-            </Segment>:<div>there are more then 1 notes</div>
+            </Segment>: dailyNotes.map((note,index)=>{
+            return <Segment key={index} style={{background:'#b5b5b5'}}>
+                <Accordion.Title index={index} active={state.activeIndex === index} onClick={handleClick}>
+                    <h2>{today.minus({days: index}).toLocaleString(DateTime.DATE_SHORT)}</h2>
+                </Accordion.Title>
+                <Accordion.Content active={state.activeIndex === index}>
+                    <DailyTable data={note}/>
+                </Accordion.Content>
+            </Segment>  
+            })
             }
         </Accordion>
     );
