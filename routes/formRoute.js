@@ -122,7 +122,7 @@ module.exports = (handle,server) => {
             res.json({error:error, stackError:error.stack});
         });
     });
-    //daily training notes inserted here
+    //new daily training notes inserted here
     server.post('/api/dogprofile/:name',(req,res)=>{
         console.log('server side post',req.params.name)
         console.log('server side post',req.body)
@@ -176,4 +176,21 @@ module.exports = (handle,server) => {
             res.json({error:error, stackError:error.stack});
         });
     });
+    //get all daily notes for dog
+    server.get('/api/dogprofile/:id',(req,res)=>{
+        let id=req.params.id;
+        db.dogStatus.findAll({where:{
+            dogID: req.params.id
+        }}).then((queryResp) => {
+            res.status(200);
+            res.json({
+                success:true,
+                data: queryResp
+            });
+        }).catch((error) => {
+            console.log(error)
+            res.status(500);
+            res.json({error:error, stackError:error.stack});
+        });
+    })
 };

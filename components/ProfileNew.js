@@ -9,11 +9,11 @@ export default (props) => {
                     <Grid.Row>
                         <Grid.Column width={8} style={{marginTop:'3%', textAlign:'center'}}>
                             <Header>{props.data.dogName}</Header>
-                            <p>Age: {props.data.dogAge}</p>
-                            <p>Breed: {props.data.dogBreed}</p>
-                            <p>Gender: {props.data.dogGender}</p> 
-                            <p>Fixed: {props.data.fixed}</p> 
-                            <p>{props.data.program.toUpperCase()}</p>               
+                            <p>{props.data.dogAge===1?`${props.data.dogAge} year old` :`${props.data.dogAge} years old`}</p>
+                            <p>{props.data.dogGender.charAt(0).toUpperCase() + props.data.dogGender.slice(1)}</p> 
+                            <p>{props.data.dogBreed}</p>
+                            <p>{props.data.fixed==='yes'?'Fixed':'Not Fixed'}</p> 
+                            <p>{props.data.program.charAt(0).toUpperCase() + props.data.program.slice(1)}</p>               
                         </Grid.Column>
                         <Grid.Column width={8}>
                             {/* for now this image will be static but in later feature it will be uploaded */}
