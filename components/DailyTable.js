@@ -10,42 +10,43 @@ const level = [
 ];
 export default (props) => {
     const [data,setData] = useState({
+        id:props.note.id,
         dogID: props.dogID,
-        peed: false,
-        pooped: false,
-        pottyNotes: null,
-        ate: false ,
-        feedingNotes: null,
-        sit: 0,
-        sitDuration: false,
-        sitDistance: false,
-        sitNotes: null,
-        down: 0,
-        downDuration: false,
-        downDistance: false,
-        downNotes: null,
-        place: 0,
-        placeDuration: false,
-        placeDistance: false,
-        placeNotes: null,
-        heel: 0,
-        heelDuration: false,
-        heelDistance: false,
-        heelNotes: null,
-        recall: 0,
-        recallDuration: false,
-        recallDistance: false,
-        recallNotes: null,
-        letsGo: 0,
-        letsGoDuration: false,
-        letsGoDistance: false,
-        letsGoNotes: null,
-        doorManners: 0,
-        doorMannersDuration: false,
-        doorMannersDistance: false,
-        doorMannersNotes: null,
-        outing: null,
-        outingNotes: null
+        peed: props.note.peed?props.note.peed:false,
+        pooped: props.note.pooped?props.note.pooped:false,
+        pottyNotes: props.note.pottyNotes?props.note.pottyNotes:null,
+        ate: props.note.ate?props.note.ate:false ,
+        feedingNotes: props.note.feedingNotes?props.note.feedingNotes:null,
+        sit: props.note.sit?props.note.sit:0,
+        sitDuration: props.note.sitDuration?props.note.sitDuration:false,
+        sitDistance: props.note.sitDistance?props.note.sitDistance:false,
+        sitNotes: props.note.sitNotes?props.note.sitNotes:null,
+        down: props.note.down?props.note.down:0,
+        downDuration: props.note.downDuration?props.note.downDuration:false,
+        downDistance: props.note.downDistance?props.note.downDistance:false,
+        downNotes: props.note.downNotes?props.note.downNotes:null,
+        place: props.note.place?props.note.place:0,
+        placeDuration: props.note.placeDuration?props.note.placeDuration:false,
+        placeDistance: props.note.placeDistance?props.note.placeDistance:false,
+        placeNotes: props.note.placeNotes?props.note.placeNotes:null,
+        heel: props.note.heel?props.note.heel:0,
+        heelDuration: props.note.heelDuration?props.note.heelDuration:false,
+        heelDistance: props.note.heelDistance?props.note.heelDistance:false,
+        heelNotes: props.note.heelNotes?props.note.heelNotes:null,
+        recall: props.note.recall?props.note.recall:0,
+        recallDuration: props.note.recallDuration?props.note.recallDuration:false,
+        recallDistance: props.note.recallDistance?props.note.recallDistance:false,
+        recallNotes: props.note.recallNotes?props.note.recallNotes:null,
+        letsGo: props.note.letsGo?props.note.letsGo:0,
+        letsGoDuration: props.note.letsGoDuration?props.note.letsGoDuration:false,
+        letsGoDistance: props.note.letsGoDistance?props.note.letsGoDistance:false,
+        letsGoNotes: props.note.letsGoNotes?props.note.letsGoNotes:null,
+        doorManners: props.note.doorManners?props.note.doorManners:0,
+        doorMannersDuration: props.note.doorMannersDuration?props.note.doorMannersDuration:false,
+        doorMannersDistance: props.note.doorMannersDistance?props.note.doorMannersDistance:false,
+        doorMannersNotes: props.note.doorMannersNotes?props.note.doorMannersNotes:null,
+        outing: props.note.outing?props.note.outing:null,
+        outingNotes: props.note.outingNotes?props.note.outingNotes:null
     })
     const handleInput= (event)=>{
         let newObj = {[event.target.name]:event.target.value};
@@ -59,14 +60,19 @@ export default (props) => {
         let newObj = {[item.name]:item.checked};
         setData({...data,...newObj});
     }
-    const handleNewSubmit = (event)=>{
+    const handleNewSubmit = async (event)=>{
+        let response;
         event.preventDefault();
         console.log(props.dogName)
-        axios.post('/api/dogprofile/'+props.dogName, data)
-        .then(res => {    
-            res.status===200?alert("Daily Info saved successfully"):console.log(res);
-        })
-        .catch(err => console.log('Error:',err))
+        console.log(data)
+        response = data.id===0?
+        await axios.post('/api/dogprofile/'+props.dogName, data):
+        await axios.put('/api/dogprofile/'+props.dogName, data)
+        // axios.post('/api/dogprofile/'+props.dogName, data)
+        // .then(res => {    
+        //     res.status===200?alert("Daily Info saved successfully"):console.log(res);
+        // })
+        // .catch(err => console.log('Error:',err))
     }
     return (<Form style={{margin:'20px 20px 0px 10px'}}>
         <Grid divided='vertically'>
@@ -237,3 +243,43 @@ export default (props) => {
         <Form.Button positive onClick={handleNewSubmit}>Save</Form.Button>
     </Form>);
 };
+/*
+const [data,setData] = useState({
+    dogID: props.dogID,
+    peed: props.note.peed?props.note.peed:false,
+    pooped: props.note.pooped?props.note.pooped:false,
+    pottyNotes: props.note.pottyNotes?props.note.pottyNotes:null,
+    ate: props.note.ate?props.note.ate:false ,
+    feedingNotes: props.note.feedingNotes?props.note.feedingNotes:null,
+    sit: props.note.sit?props.note.sit:0,
+    sitDuration: props.note.sitDuration?props.note.sitDuration:false,
+    sitDistance: props.note.sitDistance?props.note.sitDistance:false,
+    sitNotes: props.note.sitNotes?props.note.sitNotes:null,
+    down: props.note.down?props.note.down:0,
+    downDuration: props.note.downDuration?props.note.downDuration:false,
+    downDistance: props.note.downDistance?props.note.downDistance:false,
+    downNotes: props.note.downNotes?props.note.downNotes:null,
+    place: props.note.place?props.note.place:0,
+    placeDuration: props.note.placeDuration?props.note.placeDuration:false,
+    placeDistance: props.note.placeDistance?props.note.placeDistance:false,
+    placeNotes: props.note.placeNotes?props.note.placeNotes:null,
+    heel: props.note.heel?props.note.heel:0,
+    heelDuration: props.note.heelDuration?props.note.heelDuration:false,
+    heelDistance: props.note.heelDistance?props.note.heelDistance:false,
+    heelNotes: props.note.heelNotes?props.note.heelNotes:null,
+    recall: props.note.recall?props.note.recall:0,
+    recallDuration: props.note.recallDuration?props.note.recallDuration:false,
+    recallDistance: props.note.recallDistance?props.note.recallDistance:false,
+    recallNotes: props.note.recallNotes?props.note.recallNotes:null,
+    letsGo: props.note.letsGo?props.note.letsGo:0,
+    letsGoDuration: props.note.letsGoDuration?props.note.letsGoDuration:false,
+    letsGoDistance: props.note.letsGoDistance?props.note.letsGoDistance:false,
+    letsGoNotes: props.note.letsGoNotes?props.note.letsGoNotes:null,
+    doorManners: props.note.doorManners?props.note.doorManners:0,
+    doorMannersDuration: props.note.doorMannersDuration?props.note.doorMannersDuration:false,
+    doorMannersDistance: props.note.doorMannersDistance?props.note.doorMannersDistance:false,
+    doorMannersNotes: props.note.doorMannersNotes?props.note.doorMannersNotes:null,
+    outing: props.note.outing?props.note.outing:null,
+    outingNotes: props.note.outingNotes?props.note.outingNotes:null
+})
+*/
