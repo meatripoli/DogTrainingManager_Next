@@ -5,14 +5,24 @@ import axios from 'axios';
 import UserContext from './util/UserContext';
 import {DateTime} from 'luxon';
 
+//hardcoded timechange to UTC -5 hrs in line 13,16,22,25
 const formatDate = (date,fromSQL)=>{
     if(fromSQL){
         //clean up the date from SQL before formatting as mm/dd/yyyy
         date=date.replace("T"," ").replace("Z","");
-        return DateTime.fromSQL(date).toLocaleString(DateTime.DATE_SHORT)
+        return DateTime.fromSQL(date).minus({hours: 5}).toLocaleString(DateTime.DATE_SHORT)
     }
     //today's date formatted as mm/dd/yyyy
-    return date.toLocaleString(DateTime.DATE_SHORT)
+    return date.minus({hours: 5}).toLocaleString(DateTime.DATE_SHORT)
+}
+const formatTime = (date,fromSQL)=>{
+    if(fromSQL){
+        //clean up the date from SQL before formatting as mm/dd/yyyy
+        date=date.replace("T"," ").replace("Z","");
+        return DateTime.fromSQL(date).minus({hours: 5}).toLocaleString(DateTime.TIME_SIMPLE)
+    }
+    //today's date formatted as mm/dd/yyyy
+    return date.minus({hours: 5}).toLocaleString(DateTime.TIME_SIMPLE)
 }
 export default (props) => {
     const {dogInfo} = useContext(UserContext);
@@ -94,10 +104,10 @@ export default (props) => {
         fluid 
         exclusive={false}>
             {dailyNotes.map((note,index)=>{
-                let date = note.createdAt ? formatDate(note.createdAt,true) : today;
+                let createDate = note.createdAt ? formatDate(note.createdAt,true) : today;
                 return (<Segment key={index} style={{background:'#b5b5b5'}}>
                     <Accordion.Title index={index} active={state.activeIndex === index} onClick={handleClick}>
-                        <h2>{date}</h2>
+                    {note.updatedAt ? <h2>{createDate} - Last updated on {formatDate(note.updatedAt,true)} at {formatTime(note.updatedAt,true)}</h2>:<h2>{createDate}</h2>}
                     </Accordion.Title>
                     <Accordion.Content active={state.activeIndex === index}>
                         <DailyTable dogID={props.data.id} note={note}/>
@@ -106,34 +116,3 @@ export default (props) => {
         </Accordion>
     );
 };
-
-/*
-<Accordion 
-fluid 
-exclusive={false}>
-    <Segment style={{background:'#b5b5b5'}}>
-        <Accordion.Title index={0} active={state.activeIndex === 0} onClick={handleClick}>
-            <h2>Today (3/30/2020)</h2>
-        </Accordion.Title>
-        <Accordion.Content active={state.activeIndex === 0}>
-            <DailyTable dogID={props.data.id}/>
-        </Accordion.Content>
-    </Segment>
-    <Segment style={{background:'#b5b5b5'}}>
-        <Accordion.Title index={1} active={state.activeIndex === 1} onClick={handleClick}> 
-            <h2>Yesterday (3/29/2020)</h2>
-        </Accordion.Title>
-        <Accordion.Content active={state.activeIndex === 1}>
-            <DailyTable dogID={props.data.id}/>
-        </Accordion.Content>
-    </Segment>
-    <Segment style={{background:'#b5b5b5'}}>
-        <Accordion.Title index={2} active={state.activeIndex === 2} onClick={handleClick}>                   
-            <h2>3/28/2020</h2>
-        </Accordion.Title>
-        <Accordion.Content active={state.activeIndex === 2}>
-            <DailyTable dogID={props.data.id}/>
-        </Accordion.Content>
-    </Segment>
-</Accordion>
-*/

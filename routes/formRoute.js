@@ -96,8 +96,6 @@ module.exports = (handle,server) => {
     });
     //route for the dropoff form in the dogs and archive page
     server.put('/api/dropoff/:name',(req,res)=>{
-        console.log('server side put',req.params.name)
-        console.log('server side put',req.body)
         db.trainingForm
         .update({
             status: req.body.program==='gohome'?'inactive':'active',
@@ -124,8 +122,6 @@ module.exports = (handle,server) => {
     });
     //new daily training notes inserted here
     server.post('/api/dogprofile/:id',(req,res)=>{
-        console.log('server side post',req.params.id)
-        console.log('server side post',req.body)
         db.dogStatus.create({
             dogID:req.params.id,
             peed:req.body.peed, 
@@ -177,8 +173,6 @@ module.exports = (handle,server) => {
     });
     //update daily training note
     server.put('/api/dogprofile/:id',(req,res)=>{
-        console.log('server side put',req.params.id)
-        console.log('server side put',req.body)
         db.dogStatus.update({
             dogID:req.params.id,
             peed:req.body.peed, 
@@ -233,7 +227,6 @@ module.exports = (handle,server) => {
     });
     //get all daily notes for dog
     server.get('/api/dogprofile/:id',(req,res)=>{
-        let id=req.params.id;
         db.dogStatus.findAll({
             where:{
                 dogID: req.params.id
