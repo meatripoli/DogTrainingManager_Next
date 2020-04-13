@@ -97,7 +97,7 @@ export default (props) => {
     const ownerInfo = (rowData)=>{ return <>
         <p>
             <span style={{fontWeight:"bold"}}>{'Name: '}</span>
-            {`${rowData.ownerFirstName} ${rowData.ownerLastName}`}
+            {`${rowData.ownerFirstName || ''} ${rowData.ownerLastName || ''}`}
         </p>
         <p>
             <span style={{fontWeight:"bold"}}>{'Phone: '}</span>

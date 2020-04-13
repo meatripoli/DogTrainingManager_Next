@@ -1,5 +1,5 @@
 import { Form,Header,Grid } from 'semantic-ui-react';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import axios from 'axios';
 
 const level = [
@@ -10,42 +10,43 @@ const level = [
 ];
 export default (props) => {
     const [data,setData] = useState({
+        id:props.note.id,
         dogID: props.dogID,
-        peed: false,
-        pooped: false,
-        pottyNotes: null,
-        ate: false ,
-        feedingNotes: null,
-        sit: 0,
-        sitDuration: false,
-        sitDistance: false,
-        sitNotes: null,
-        down: 0,
-        downDuration: false,
-        downDistance: false,
-        downNotes: null,
-        place: 0,
-        placeDuration: false,
-        placeDistance: false,
-        placeNotes: null,
-        heel: 0,
-        heelDuration: false,
-        heelDistance: false,
-        heelNotes: null,
-        recall: 0,
-        recallDuration: false,
-        recallDistance: false,
-        recallNotes: null,
-        letsGo: 0,
-        letsGoDuration: false,
-        letsGoDistance: false,
-        letsGoNotes: null,
-        doorManners: 0,
-        doorMannersDuration: false,
-        doorMannersDistance: false,
-        doorMannersNotes: null,
-        outing: null,
-        outingNotes: null
+        peed: props.note.peed?props.note.peed:false,
+        pooped: props.note.pooped?props.note.pooped:false,
+        pottyNotes: props.note.pottyNotes?props.note.pottyNotes:null,
+        ate: props.note.ate?props.note.ate:false ,
+        feedingNotes: props.note.feedingNotes?props.note.feedingNotes:null,
+        sit: props.note.sit?props.note.sit:0,
+        sitDuration: props.note.sitDuration?props.note.sitDuration:false,
+        sitDistance: props.note.sitDistance?props.note.sitDistance:false,
+        sitNotes: props.note.sitNotes?props.note.sitNotes:null,
+        down: props.note.down?props.note.down:0,
+        downDuration: props.note.downDuration?props.note.downDuration:false,
+        downDistance: props.note.downDistance?props.note.downDistance:false,
+        downNotes: props.note.downNotes?props.note.downNotes:null,
+        place: props.note.place?props.note.place:0,
+        placeDuration: props.note.placeDuration?props.note.placeDuration:false,
+        placeDistance: props.note.placeDistance?props.note.placeDistance:false,
+        placeNotes: props.note.placeNotes?props.note.placeNotes:null,
+        heel: props.note.heel?props.note.heel:0,
+        heelDuration: props.note.heelDuration?props.note.heelDuration:false,
+        heelDistance: props.note.heelDistance?props.note.heelDistance:false,
+        heelNotes: props.note.heelNotes?props.note.heelNotes:null,
+        recall: props.note.recall?props.note.recall:0,
+        recallDuration: props.note.recallDuration?props.note.recallDuration:false,
+        recallDistance: props.note.recallDistance?props.note.recallDistance:false,
+        recallNotes: props.note.recallNotes?props.note.recallNotes:null,
+        letsGo: props.note.letsGo?props.note.letsGo:0,
+        letsGoDuration: props.note.letsGoDuration?props.note.letsGoDuration:false,
+        letsGoDistance: props.note.letsGoDistance?props.note.letsGoDistance:false,
+        letsGoNotes: props.note.letsGoNotes?props.note.letsGoNotes:null,
+        doorManners: props.note.doorManners?props.note.doorManners:0,
+        doorMannersDuration: props.note.doorMannersDuration?props.note.doorMannersDuration:false,
+        doorMannersDistance: props.note.doorMannersDistance?props.note.doorMannersDistance:false,
+        doorMannersNotes: props.note.doorMannersNotes?props.note.doorMannersNotes:null,
+        outing: props.note.outing?props.note.outing:null,
+        outingNotes: props.note.outingNotes?props.note.outingNotes:null
     })
     const handleInput= (event)=>{
         let newObj = {[event.target.name]:event.target.value};
@@ -59,14 +60,23 @@ export default (props) => {
         let newObj = {[item.name]:item.checked};
         setData({...data,...newObj});
     }
-    const handleNewSubmit = (event)=>{
+    const handleNewSubmit = async (event)=>{
+        let response;
         event.preventDefault();
-        console.log(props.dogName)
-        axios.post('/api/dogprofile/'+props.dogName, data)
-        .then(res => {    
-            res.status===200?alert("Daily Info saved successfully"):console.log(res);
-        })
-        .catch(err => console.log('Error:',err))
+        try{
+            //if id=0 post new note else update existing note
+            response = data.id===0?
+                await axios.post('/api/dogprofile/'+props.dogID, data):
+                await axios.put('/api/dogprofile/'+props.dogID, data);
+            if(response.status===200){
+                // console.log(response.data.message);
+                //add how to handle submission success
+            };
+        }
+        catch(e){
+            // console.log('Error:',e)
+            //add how to handle submission error
+        }
     }
     return (<Form style={{margin:'20px 20px 0px 10px'}}>
         <Grid divided='vertically'>
@@ -79,14 +89,14 @@ export default (props) => {
                         <label>Pooped</label>
                         <Form.Checkbox name='pooped' checked= {data.pooped} onClick={handleCheckbox}/>
                     </Form.Group>
-                    <Form.TextArea label='Potty Notes' name='pottyNotes' value={data.pottyNotes || ''} placeholder='Notes' onChange={handleInput}/> 
+                    <Form.TextArea label='Notes' name='pottyNotes' value={data.pottyNotes || ''} placeholder='Potty Notes' onChange={handleInput}/> 
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Group inline >
                         <label>Ate</label>
                         <Form.Checkbox name='ate' checked= {data.ate} onClick={handleCheckbox}/>
                     </Form.Group>
-                    <Form.TextArea label='Feeding Notes' name='feedingNotes' value={data.feedingNotes || ''} placeholder='Notes' onChange={handleInput}/> 
+                    <Form.TextArea label='Notes' name='feedingNotes' value={data.feedingNotes || ''} placeholder='Feeding Notes' onChange={handleInput}/> 
                 </Grid.Column>
             </Grid.Row>     
             <Header as='h3'  textAlign='center'>Training Status</Header>
@@ -108,7 +118,7 @@ export default (props) => {
                             <Form.Checkbox name='sitDistance' checked= {data.sitDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='sitNotes' placeholder='Notes' value={data.sitNotes || ''} onChange={handleInput}/> 
+                    <Form.TextArea label='Notes' name='sitNotes' placeholder='Sit Notes' value={data.sitNotes || ''} onChange={handleInput}/> 
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Group grouped>
@@ -127,7 +137,7 @@ export default (props) => {
                             <Form.Checkbox name='downDistance' checked= {data.downDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='downNotes' placeholder='Notes' value={data.downNotes || ''} onChange={handleInput}/>
+                    <Form.TextArea label='Notes' name='downNotes' placeholder='Down Notes' value={data.downNotes || ''} onChange={handleInput}/>
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Group grouped>
@@ -146,7 +156,7 @@ export default (props) => {
                             <Form.Checkbox name='placeDistance' checked= {data.placeDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='placeNotes' placeholder='Notes' value={data.placeNotes || ''} onChange={handleInput}/>
+                    <Form.TextArea label='Notes' name='placeNotes' placeholder='Place Notes' value={data.placeNotes || ''} onChange={handleInput}/>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={3}>
@@ -167,7 +177,7 @@ export default (props) => {
                             <Form.Checkbox name='heelDistance' checked= {data.heelDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='heelNotes' placeholder='Notes' value={data.heelNotes || ''} onChange={handleInput}/>
+                    <Form.TextArea label='Notes' name='heelNotes' placeholder='Heel Notes' value={data.heelNotes || ''} onChange={handleInput}/>
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Group grouped>
@@ -186,7 +196,7 @@ export default (props) => {
                             <Form.Checkbox name='recallDistance' checked= {data.recallDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='recallNotes' placeholder='Notes' value={data.recallNotes || ''} onChange={handleInput}/>
+                    <Form.TextArea label='Notes' name='recallNotes' placeholder='Recall Notes' value={data.recallNotes || ''} onChange={handleInput}/>
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Group grouped>
@@ -205,7 +215,7 @@ export default (props) => {
                             <Form.Checkbox name='letsGoDistance' checked= {data.letsGoDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='letsGoNotes' placeholder='Notes' value={data.letsGoNotes || ''} onChange={handleInput}/>
+                    <Form.TextArea label='Notes' name='letsGoNotes' placeholder="Let's Go Notes" value={data.letsGoNotes || ''} onChange={handleInput}/>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={2}>
@@ -226,11 +236,11 @@ export default (props) => {
                             <Form.Checkbox name='doorMannersDistance' checked= {data.doorMannersDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='doorMannersNotes' placeholder='Notes' value={data.doorMannersNotes || ''} onChange={handleInput}/> 
+                    <Form.TextArea label='Notes' name='doorMannersNotes' placeholder='Door Manners Notes' value={data.doorMannersNotes || ''} onChange={handleInput}/> 
                 </Grid.Column>
                 <Grid.Column>
-                    <Form.Input fluid label='Location of Outing' onChange={handleInput} name='outing' placeholder='Lowes' style={{marginBottom:'45px'}}/>
-                    <Form.TextArea label='Notes' placeholder='Notes' name='outingNotes' value={data.outingNotes || ''} onChange={handleInput}/> 
+                    <Form.Input fluid label='Outing' onChange={handleInput} name='outing' placeholder='Name of Location' style={{marginBottom:'45px'}}/>
+                    <Form.TextArea label='Notes' placeholder='Outing Notes' name='outingNotes' value={data.outingNotes || ''} onChange={handleInput}/> 
                 </Grid.Column>
             </Grid.Row>
         </Grid>
