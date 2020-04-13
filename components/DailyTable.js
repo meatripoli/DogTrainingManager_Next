@@ -63,16 +63,23 @@ export default (props) => {
     const handleNewSubmit = async (event)=>{
         let response;
         event.preventDefault();
-        console.log(props.dogName)
+        console.log(props.dogID)
         console.log(data)
-        response = data.id===0?
-        await axios.post('/api/dogprofile/'+props.dogName, data):
-        await axios.put('/api/dogprofile/'+props.dogName, data)
-        // axios.post('/api/dogprofile/'+props.dogName, data)
-        // .then(res => {    
-        //     res.status===200?alert("Daily Info saved successfully"):console.log(res);
-        // })
-        // .catch(err => console.log('Error:',err))
+        try{
+            //if id=0 it means that its a new note 
+            response = data.id===0?
+                await axios.post('/api/dogprofile/'+props.dogID, data):
+                await axios.put('/api/dogprofile/'+props.dogID, data);
+            if(response.status===200){
+                console.log("Note saved");
+                console.log(response.data.message);
+                
+            };
+        }
+        catch(e){
+            console.log('Error:',err)
+            
+        }
     }
     return (<Form style={{margin:'20px 20px 0px 10px'}}>
         <Grid divided='vertically'>
@@ -85,14 +92,14 @@ export default (props) => {
                         <label>Pooped</label>
                         <Form.Checkbox name='pooped' checked= {data.pooped} onClick={handleCheckbox}/>
                     </Form.Group>
-                    <Form.TextArea label='Potty Notes' name='pottyNotes' value={data.pottyNotes || ''} placeholder='Notes' onChange={handleInput}/> 
+                    <Form.TextArea label='Notes' name='pottyNotes' value={data.pottyNotes || ''} placeholder='Potty Notes' onChange={handleInput}/> 
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Group inline >
                         <label>Ate</label>
                         <Form.Checkbox name='ate' checked= {data.ate} onClick={handleCheckbox}/>
                     </Form.Group>
-                    <Form.TextArea label='Feeding Notes' name='feedingNotes' value={data.feedingNotes || ''} placeholder='Notes' onChange={handleInput}/> 
+                    <Form.TextArea label='Notes' name='feedingNotes' value={data.feedingNotes || ''} placeholder='Feeding Notes' onChange={handleInput}/> 
                 </Grid.Column>
             </Grid.Row>     
             <Header as='h3'  textAlign='center'>Training Status</Header>
@@ -114,7 +121,7 @@ export default (props) => {
                             <Form.Checkbox name='sitDistance' checked= {data.sitDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='sitNotes' placeholder='Notes' value={data.sitNotes || ''} onChange={handleInput}/> 
+                    <Form.TextArea label='Notes' name='sitNotes' placeholder='Sit Notes' value={data.sitNotes || ''} onChange={handleInput}/> 
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Group grouped>
@@ -133,7 +140,7 @@ export default (props) => {
                             <Form.Checkbox name='downDistance' checked= {data.downDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='downNotes' placeholder='Notes' value={data.downNotes || ''} onChange={handleInput}/>
+                    <Form.TextArea label='Notes' name='downNotes' placeholder='Down Notes' value={data.downNotes || ''} onChange={handleInput}/>
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Group grouped>
@@ -152,7 +159,7 @@ export default (props) => {
                             <Form.Checkbox name='placeDistance' checked= {data.placeDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='placeNotes' placeholder='Notes' value={data.placeNotes || ''} onChange={handleInput}/>
+                    <Form.TextArea label='Notes' name='placeNotes' placeholder='Place Notes' value={data.placeNotes || ''} onChange={handleInput}/>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={3}>
@@ -173,7 +180,7 @@ export default (props) => {
                             <Form.Checkbox name='heelDistance' checked= {data.heelDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='heelNotes' placeholder='Notes' value={data.heelNotes || ''} onChange={handleInput}/>
+                    <Form.TextArea label='Notes' name='heelNotes' placeholder='Heel Notes' value={data.heelNotes || ''} onChange={handleInput}/>
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Group grouped>
@@ -192,7 +199,7 @@ export default (props) => {
                             <Form.Checkbox name='recallDistance' checked= {data.recallDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='recallNotes' placeholder='Notes' value={data.recallNotes || ''} onChange={handleInput}/>
+                    <Form.TextArea label='Notes' name='recallNotes' placeholder='Recall Notes' value={data.recallNotes || ''} onChange={handleInput}/>
                 </Grid.Column>
                 <Grid.Column>
                     <Form.Group grouped>
@@ -211,7 +218,7 @@ export default (props) => {
                             <Form.Checkbox name='letsGoDistance' checked= {data.letsGoDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='letsGoNotes' placeholder='Notes' value={data.letsGoNotes || ''} onChange={handleInput}/>
+                    <Form.TextArea label='Notes' name='letsGoNotes' placeholder="Let's Go Notes" value={data.letsGoNotes || ''} onChange={handleInput}/>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={2}>
@@ -232,11 +239,11 @@ export default (props) => {
                             <Form.Checkbox name='doorMannersDistance' checked= {data.doorMannersDistance} label='Distance' onClick={handleCheckbox}/>
                         </Form.Group>
                     </Form.Group>
-                    <Form.TextArea label='Notes' name='doorMannersNotes' placeholder='Notes' value={data.doorMannersNotes || ''} onChange={handleInput}/> 
+                    <Form.TextArea label='Notes' name='doorMannersNotes' placeholder='Door Manners Notes' value={data.doorMannersNotes || ''} onChange={handleInput}/> 
                 </Grid.Column>
                 <Grid.Column>
-                    <Form.Input fluid label='Location of Outing' onChange={handleInput} name='outing' placeholder='Lowes' style={{marginBottom:'45px'}}/>
-                    <Form.TextArea label='Notes' placeholder='Notes' name='outingNotes' value={data.outingNotes || ''} onChange={handleInput}/> 
+                    <Form.Input fluid label='Outing' onChange={handleInput} name='outing' placeholder='Name of Location' style={{marginBottom:'45px'}}/>
+                    <Form.TextArea label='Notes' placeholder='Outing Notes' name='outingNotes' value={data.outingNotes || ''} onChange={handleInput}/> 
                 </Grid.Column>
             </Grid.Row>
         </Grid>
