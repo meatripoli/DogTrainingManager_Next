@@ -1,6 +1,11 @@
 import {Grid, Image,  Header, Tab, List } from 'semantic-ui-react';
 
 export default (props) => {
+    console.log(props)
+    let dogAge = props.data.dogAge===1?`${props.data.dogAge} year old` :`${props.data.dogAge} years old`;
+    let dogGender = props.data.dogGender?props.data.dogGender.charAt(0).toUpperCase() + props.data.dogGender.slice(1):'';
+    let fixed=props.data.fixed==='yes'?'Fixed':'Not Fixed';
+    let program=props.data.program?props.data.program.charAt(0).toUpperCase() + props.data.program.slice(1):'';
     const panes = [
         {
             menuItem: { key: 'dog', icon: 'paw', content: 'Dog Info'},
@@ -8,16 +13,16 @@ export default (props) => {
                 <Grid >                    
                     <Grid.Row>
                         <Grid.Column width={8} style={{marginTop:'3%', textAlign:'center'}}>
-                            <Header>{props.data.dogName}</Header>
-                            <p>{props.data.dogAge===1?`${props.data.dogAge} year old` :`${props.data.dogAge} years old`}</p>
-                            <p>{props.data.dogGender.charAt(0).toUpperCase() + props.data.dogGender.slice(1)}</p> 
-                            <p>{props.data.dogBreed}</p>
-                            <p>{props.data.fixed==='yes'?'Fixed':'Not Fixed'}</p> 
-                            <p>{props.data.program.charAt(0).toUpperCase() + props.data.program.slice(1)}</p>               
+                            <Header>{props.data.dogName || 'Loading'}</Header>
+                            <p>{props.data.dogAge?dogAge : ''}</p>
+                            <p>{dogGender}</p> 
+                            <p>{props.data.dogBreed || ''}</p>
+                            <p>{props.data.fixed?fixed : ''}</p> 
+                            <p>{program}</p>               
                         </Grid.Column>
                         <Grid.Column width={8}>
                             {/* for now this image will be static but in later feature it will be uploaded */}
-                            <Image  src='https://www.pngkey.com/png/detail/204-2046914_diane-vulcan-shared-rhodesian-ridgeback.png' circular style={{width:'300px', height:'250px'}}/>          
+                            <Image  src={props.data.dogName?'https://www.pngkey.com/png/detail/204-2046914_diane-vulcan-shared-rhodesian-ridgeback.png':'https://react.semantic-ui.com/images/wireframe/image.png'} circular style={{width:'300px', height:'250px'}}/>          
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>                

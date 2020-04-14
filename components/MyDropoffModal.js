@@ -2,7 +2,7 @@ import MyModal from '../components/MyModal';
 import TableTemplate from '../components/TableTemplate';
 import UserContext from '../components/util/UserContext';
 
-import {Message, Form, Button, Icon} from 'semantic-ui-react';
+import {Message, Form} from 'semantic-ui-react';
 import Link from 'next/link'; 
 import {useState, useEffect,useContext} from 'react';
 import axios from 'axios';
@@ -170,7 +170,6 @@ export default (props) => {
         try{
             response = await axios.put('/api/dropoff/'+newObj.id, newObj)
             if(response.status===200){
-                console.log("Dropoff Info saved successfully")
                 setError({
                     color: 'green',
                     title: 'Success!',
@@ -181,7 +180,6 @@ export default (props) => {
             };
         }
         catch(e){
-            console.log('Error:',err)
             setError({
                 color: 'red',
                 title: 'Failed!',

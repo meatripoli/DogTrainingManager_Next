@@ -6,7 +6,7 @@ import axios from 'axios';
 import router from 'next/router'
 import UserContext from '../components/util/UserContext';
 
-export default (props) => {
+export default () => {
   const { signIn } = useContext(UserContext);
   const [message,setMessage]=useState({
     color:'grey',

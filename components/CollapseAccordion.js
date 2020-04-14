@@ -76,18 +76,15 @@ export default (props) => {
             let array=res.data.data;
             if(array.length === 0 || today!=formatDate(array[0].createdAt,true)){
                 //if a notes for today was not create prepend empty note to results before setting dailyNotes
-                console.log('did not find a note for today',today)
                 array.unshift(emptyNote);
                 setDailyNotes(array);
             }
             else{
                 //if a note was created today set dailyNotes to result
-                console.log('found a note for today',today)
                 setDailyNotes(array);
             };
         });
     },[]);
-    console.log(dailyNotes)
     
     const [state,setState] = useState({ 
         activeIndex: 0,
