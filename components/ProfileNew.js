@@ -1,7 +1,7 @@
 import {Grid, Image,  Header, Tab, List } from 'semantic-ui-react';
 
+//props needed data for dog profile
 export default (props) => {
-    console.log(props)
     let dogAge = props.data.dogAge===1?`${props.data.dogAge} year old` :`${props.data.dogAge} years old`;
     let dogGender = props.data.dogGender?props.data.dogGender.charAt(0).toUpperCase() + props.data.dogGender.slice(1):'';
     let fixed=props.data.fixed==='yes'?'Fixed':'Not Fixed';
