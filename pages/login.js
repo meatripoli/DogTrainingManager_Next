@@ -29,9 +29,6 @@ export default (props) => {
         let newObj = {body: 'Incorrect user or password',color:'red'};
         setMessage({...message,...newObj})
       }
-      else{
-        console.log(e.response)
-      }
     }
     //done after data is sent for authentication
     ///this clears object
