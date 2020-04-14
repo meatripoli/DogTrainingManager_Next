@@ -70,7 +70,6 @@ export default () => {
     }; 
     //handles form checkbox 
     const handleCheckBox = (event,item) => {
-        console.log([item.name],item.checked)
         let newObj = {[item.name]: item.checked};
         setNewUser({...newUser,...newObj});
     };
