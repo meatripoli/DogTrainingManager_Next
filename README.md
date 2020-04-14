@@ -1,4 +1,4 @@
-# Password Generator
+# Dog Training Manager App
 Daily task manager used by trainers to keep track of and share the data gathered throughout a work day while training a dog with the whole team to provide smooth transitions between shifts. 
 Currently deployed webiste:
 [Password Generator](https://zeit.co/meatripoli/final-project "Password Generator")
