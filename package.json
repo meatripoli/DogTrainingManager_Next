@@ -21,13 +21,13 @@
     "express": "^4.17.1",
     "luxon": "^1.23.0",
     "mysql2": "^2.1.0",
-    "next": "^9.3.1",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "next": "^9.3.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
-    "sequelize": "^5.21.5",
+    "sequelize": "^5.21.7",
     "sequelize-cli": "^5.5.1"
   }
 }
